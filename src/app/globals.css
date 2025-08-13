@@ -21,6 +21,12 @@
   }
 }
 
+html,
+body {
+  width: 100vw; /* asegura que no se salga horizontalmente */
+  overflow-x: hidden; /* bloquea scroll lateral */
+}
+
 body {
   background: black;
   color: var(--foreground);

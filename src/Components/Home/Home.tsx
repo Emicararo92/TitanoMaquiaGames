@@ -5,6 +5,7 @@ import Hero from "./Hero/Hero";
 import HomeInfo from "./HomeInfo/HomeInfo";
 import InfPat from "../InfPat/HomePat/InfPat";
 import ModelGallery3D from "../InfPat/Skins/ModelGallery3D/ModelGallery3D";
+import Devs from "../Nosotros/Devs/Devs";
 
 function Home() {
   return (
@@ -30,6 +31,7 @@ function Home() {
         slogan={"Quienes Somos"}
       />
       <DivLine logoSrc={"/Icon.png"} />
+      <Devs />
       <DivLineSmall />
     </div>
   );
