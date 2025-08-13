@@ -1,0 +1,87 @@
+.footer {
+  background: linear-gradient(to right, #a05040, #7b7b79);
+  padding: 2rem 1rem;
+  border-top: 3px solid #e9c789;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.social {
+  display: flex;
+  gap: 1.5rem;
+  order: 2;
+}
+
+.icon {
+  color: #e9c789;
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s;
+}
+
+.icon:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.legal {
+  text-align: center;
+  order: 1;
+}
+
+.legal p {
+  color: #e9c789;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.legalLinks a {
+  color: #e9c789;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.legalLinks a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.gameCredits {
+  text-align: center;
+  color: #e9c789;
+  font-style: italic;
+  font-size: 0.9rem;
+  order: 3;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .social {
+    order: 1;
+  }
+  .legal {
+    order: 2;
+  }
+  .gameCredits {
+    order: 3;
+    text-align: right;
+  }
+}
