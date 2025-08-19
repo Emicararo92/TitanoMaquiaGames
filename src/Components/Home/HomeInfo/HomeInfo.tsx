@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DivLineSmall from "../../../utils/DivLine/DivLineSmall";
 import Image from "next/image";
 import styles from "../../../Styles/HomeInfo.module.css";
@@ -72,17 +73,53 @@ const secondSectionData = [
 ];
 
 export default function HomeInfo() {
-  const [expandedIds, setExpandedIds] = useState<number[]>([]);
+  const [activeModalId, setActiveModalId] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleExpand = (id: number) => {
-    setExpandedIds((prev) =>
-      prev.includes(id) ? prev.filter((e) => e !== id) : [...prev, id]
-    );
+  // Efecto para controlar el scroll del body cuando el modal está abierto
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
+
+  const openModal = (id: number) => {
+    setActiveModalId(id);
+    setIsModalOpen(true);
   };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // Pequeño delay para permitir la animación de salida
+    setTimeout(() => setActiveModalId(null), 300);
+  };
+
+  // Cerrar modal con ESC
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      window.addEventListener("keydown", handleEsc);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [isModalOpen]);
 
   return (
     <div className={styles.homeInfoContainer}>
-      {/* Sección 1: 4 cards con "ver más" */}
+      {/* Sección 1: 4 cards */}
       <div className={styles.gridFour}>
         {firstSectionCards.map(
           ({ id, imgSrc, altText, shortDesc, longDesc }) => (
@@ -97,15 +134,12 @@ export default function HomeInfo() {
                 />
               </a>
               <p className={styles.shortDesc}>{shortDesc}</p>
-              {expandedIds.includes(id) && (
-                <p className={styles.longDesc}>{longDesc}</p>
-              )}
               <button
                 className={styles.toggleBtn}
-                onClick={() => toggleExpand(id)}
-                aria-expanded={expandedIds.includes(id)}
+                onClick={() => openModal(id)}
+                aria-label={`Ver más sobre ${shortDesc}`}
               >
-                {expandedIds.includes(id) ? "Ver menos" : "Ver más"}
+                Ver más
               </button>
             </div>
           )
@@ -142,6 +176,38 @@ export default function HomeInfo() {
           />
         </a>
       </div>
+
+      {/* Modal - Renderizado condicional mejorado */}
+      {isModalOpen && activeModalId && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {firstSectionCards
+              .filter((card) => card.id === activeModalId)
+              .map((card) => (
+                <React.Fragment key={card.id}>
+                  <Image
+                    src={card.imgSrc}
+                    alt={card.altText}
+                    width={300}
+                    height={200}
+                  />
+                  <h3>{card.shortDesc}</h3>
+                  <p>{card.longDesc}</p>
+                  <button
+                    className={styles.closeModalBtn}
+                    onClick={closeModal}
+                    aria-label="Cerrar modal"
+                  >
+                    Cerrar
+                  </button>
+                </React.Fragment>
+              ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

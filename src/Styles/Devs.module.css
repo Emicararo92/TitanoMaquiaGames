@@ -1,50 +1,218 @@
+/* Base Styles */
 .videosGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  padding: 3rem;
+  background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
+    no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Pokémon Card Container */
 .card {
   position: relative;
-  cursor: pointer;
-}
-
-.videoWrapper {
-  position: relative;
-  width: 100%;
+  border-radius: 16px;
   overflow: hidden;
-  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+  border: 5px solid #3d7dca;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-.thumbnail,
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s ease-in-out;
+.card:hover {
+  transform: translateY(-15px) rotateX(5deg) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-color: #ffcb05;
 }
 
-.video {
+/* Card Header Effect */
+.card::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, #ff0000, #ffcb05, #3d7dca);
+  z-index: 10;
+}
+
+/* Card Glow Effect */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(45deg, #ff0000, #ffcb05, #3d7dca);
+  z-index: -1;
+  border-radius: 20px;
   opacity: 0;
-  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::after {
+  opacity: 0.6;
+}
+
+/* Media Container */
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+  border-bottom: 5px solid #cc0000;
+}
+
+/* Thumbnail Style */
+.thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+  background: #fff;
+  z-index: 2;
 }
 
 .thumbnail.hidden {
   opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Video Style */
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: all 0.4s ease;
+  z-index: 1;
+  background: #000;
 }
 
 .video.visible {
   opacity: 1;
+  transform: scale(1);
 }
 
+/* Title Style */
 .title {
-  margin-top: 0.5rem;
   text-align: center;
-  font-size: 1rem;
+  padding: 1.2rem 0.5rem;
+  margin: 0;
+  font-family: "Pokemon Solid", sans-serif;
+  color: #3d7dca;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(to right, #ffcb05, #ffde59);
+  -webkit-text-stroke: 1.5px #2a75bb;
+  text-shadow: 3px 3px 0 #cc0000;
+  position: relative;
+  z-index: 3;
+}
+
+/* Type Badge */
+.title::after {
+  content: attr(data-type);
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #3d7dca;
   color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-family: Arial, sans-serif;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Description Panel */
+.description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  border-top: 5px solid #ffcb05;
+  z-index: 4;
+  line-height: 1.6;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover .description {
+  transform: translateY(0);
+}
+
+/* Pulsing Animation */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px 0 rgba(255, 203, 5, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(255, 203, 5, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px 0 rgba(255, 203, 5, 0.7);
+  }
+}
+
+.card:hover {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .videosGrid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Debug Message (Easter Egg) */
+.videoWrapper::before {
+  content: "console.log('Gotta Catch All The Bugs!')";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+  color: #ffcb05;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.2rem;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .videoWrapper::before {
+  opacity: 1;
 }

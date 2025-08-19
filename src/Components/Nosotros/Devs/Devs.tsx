@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import styles from "../../../Styles/Devs.module.css";
 import Image from "next/image";
@@ -7,74 +9,65 @@ interface VideoItem {
   thumbnail: string;
   video: string;
   title: string;
+  description: string;
+  type: string;
 }
 
 const videos: VideoItem[] = [
   {
     id: 1,
-    thumbnail: "/thumbnails/video1.jpg",
-    video: "/videos/video1.mp4",
-    title: "Video 1",
+    thumbnail:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1755123072/pkmd_mx9muu.png",
+    video:
+      "https://res.cloudinary.com/deek9levs/video/upload/v1755112462/Dani_sibbcs.mp4",
+    title: "Dev Games",
+    description:
+      "Cuando el código compila a la primera pero el juego sigue teniendo más bugs que un hormiguero. Especialista en 'features no documentadas'.",
+    type: "Unity/Unreal",
   },
   {
     id: 2,
-    thumbnail: "/thumbnails/video2.jpg",
-    video: "/videos/video2.mp4",
-    title: "Video 2",
+    thumbnail:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1755123072/pkmb_rygsmb.jpg",
+    video:
+      "https://res.cloudinary.com/deek9levs/video/upload/v1755112470/Jazz_kazkvk.mp4",
+    title: "Diseño UI",
+    description:
+      "'¿Quieres que se vea bonito o que funcione?' - Pregunta que nunca hace. Cree que los dropdowns son para cobardes y que todo debe caber en un solo viewport.",
+    type: "Figma/Photoshop",
   },
   {
     id: 3,
-    thumbnail: "/thumbnails/video3.jpg",
-    video: "/videos/video3.mp4",
-    title: "Video 3",
+    thumbnail:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1755123072/pkme_lnhmdc.png",
+    video:
+      "https://res.cloudinary.com/deek9levs/video/upload/v1755112469/Fermin_dbe8l1.mp4",
+    title: "Música Code",
+    description:
+      "Programa en ritmo de jazz: a veces sincopado, a veces fuera de tiempo, pero siempre con estilo. Su IDE tiene plugins de auto-tune.",
+    type: "React Tone.js",
   },
   {
     id: 4,
-    thumbnail: "/thumbnails/video4.jpg",
-    video: "/videos/video4.mp4",
-    title: "Video 4",
+    thumbnail:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1755123180/pkm1_aatqcf.png",
+    video:
+      "https://res.cloudinary.com/deek9levs/video/upload/v1755112461/Facu_udtttj.mp4",
+    title: "3D Master",
+    description:
+      "Cuando tus modelos tienen más polígonos que líneas de código. Especialista en 'optimización creativa' (aka reducir calidad hasta que no se note).",
+    type: "Blender/Three.js",
   },
   {
     id: 5,
-    thumbnail: "/thumbnails/video5.jpg",
-    video: "/videos/video5.mp4",
-    title: "Video 5",
-  },
-  {
-    id: 6,
-    thumbnail: "/thumbnails/video6.jpg",
-    video: "/videos/video6.mp4",
-    title: "Video 6",
-  },
-  {
-    id: 7,
-    thumbnail: "/thumbnails/video7.jpg",
-    video: "/videos/video7.mp4",
-    title: "Video 7",
-  },
-  {
-    id: 8,
-    thumbnail: "/thumbnails/video8.jpg",
-    video: "/videos/video8.mp4",
-    title: "Video 8",
-  },
-  {
-    id: 9,
-    thumbnail: "/thumbnails/video9.jpg",
-    video: "/videos/video9.mp4",
-    title: "Video 9",
-  },
-  {
-    id: 10,
-    thumbnail: "/thumbnails/video10.jpg",
-    video: "/videos/video10.mp4",
-    title: "Video 10",
-  },
-  {
-    id: 11,
-    thumbnail: "/thumbnails/video11.jpg",
-    video: "/videos/video11.mp4",
-    title: "Video 11",
+    thumbnail:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1755123072/pkmc_r7yxco.jpg",
+    video:
+      "https://res.cloudinary.com/deek9levs/video/upload/v1755112463/Emi_Cararo_khgaq8.mp4",
+    title: "Web Dev",
+    description:
+      "'Funciona en mi localhost' - Últimas palabras famosas. Cree que CSS es magia negra y que JavaScript es un lenguaje serio (pobrecito).",
+    type: "React/Next.js",
   },
 ];
 
@@ -97,6 +90,8 @@ export default function Devs() {
             <Image
               src={item.thumbnail}
               alt={item.title}
+              width={250}
+              height={250}
               className={`${styles.thumbnail} ${
                 activeVideo === item.id ? styles.hidden : ""
               }`}
@@ -113,6 +108,14 @@ export default function Devs() {
             />
           </div>
           <p className={styles.title}>{item.title}</p>
+          {activeVideo === item.id && (
+            <div className={styles.description}>
+              <p>
+                <strong>Tipo:</strong> {item.type}
+              </p>
+              <p>{item.description}</p>
+            </div>
+          )}
         </div>
       ))}
     </div>
