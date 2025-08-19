@@ -19,11 +19,10 @@ export default function Footer() {
         </div>
 
         <div className={styles.legal}>
-          <p>© 2024 TuEmpresa. Todos los derechos reservados.</p>
+          <p>© TitanoMaquiaGames. Todos los derechos reservados.</p>
           <div className={styles.legalLinks}>
             <a href="#">Términos</a>
             <a href="#">Privacidad</a>
-            <a href="#">Cookies</a>
           </div>
         </div>
 

@@ -11,15 +11,15 @@
 .cardsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2.5rem;
+  gap: 2.5rem; /* Más espacio entre cards */
   padding: 1.5rem;
 }
 
 .modelCard {
   position: relative;
-  height: 320px;
-  background: rgba(35, 35, 35, 0.6);
-  backdrop-filter: blur(8px);
+  height: 320px; /* Altura aumentada */
+  background: rgba(35, 35, 35, 0.6); /* Fondo más oscuro */
+  backdrop-filter: blur(8px); /* Efecto vidrio */
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
@@ -28,6 +28,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   z-index: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .modelCard:hover {
@@ -35,20 +36,8 @@
   box-shadow: 0 15px 25px rgba(160, 80, 64, 0.3),
     inset 0 0 0 1px rgba(231, 199, 137, 0.2);
   background: rgba(45, 45, 45, 0.7);
+  transform: translateY(-3px);
   opacity: 0.9;
-}
-
-/* Estado hidden para cuando el modelo está expandido */
-.modelCard.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.canvas {
-  width: 100%;
-  height: 100%;
 }
 
 .modelOverlay {
@@ -57,14 +46,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(5, 5, 5, 0.95);
-  backdrop-filter: blur(12px);
+  background: rgba(5, 5, 5, 0.95); /* Fondo más oscuro para overlay */
+  backdrop-filter: blur(12px); /* Más blur */
   z-index: 10;
-  transition: opacity 0.3s ease;
-}
-
-.modelOverlay.transitioning {
-  opacity: 0;
 }
 
 .expandedView {
@@ -82,12 +66,6 @@
     inset 0 0 20px rgba(231, 199, 137, 0.1);
   z-index: 1000;
   overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.expandedView.transitioning {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.9);
 }
 
 .closeButton {
@@ -115,15 +93,6 @@
   background: #e78a66;
   color: #1a1a1a;
   transform: scale(1.1);
-}
-
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #e9c789;
-  font-size: 1.1rem;
 }
 
 /* Efecto de borde sutil al hacer hover */
