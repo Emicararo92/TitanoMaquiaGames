@@ -1,7 +1,7 @@
 /* HomeInfo.module.css - Versión Mejorada */
 .homeInfoContainer {
   padding: 4rem 1rem;
-  background-color: #1a1a1a;
+  background: rgba(224, 128, 19, 0.475);
 }
 
 /* Sección 1: 4 cards - MEJORADO */
@@ -11,9 +11,8 @@
   gap: 2rem;
   padding: 3rem 2rem;
   margin-bottom: 4rem;
-  background: linear-gradient(rgba(25, 25, 25, 0.92), rgba(25, 25, 25, 0.92)),
-    url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
-      center/cover fixed;
+  background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
+    no-repeat center center fixed;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(160, 80, 64, 0.3);
@@ -37,7 +36,7 @@
   left: 0;
   right: 0;
   height: 100%;
-  background: linear-gradient(45deg, rgba(160, 80, 64, 0.1), transparent);
+  background: rgba(224, 128, 19, 0.475);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -124,9 +123,8 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
   padding: 3rem 2rem;
-  background: linear-gradient(rgba(35, 35, 35, 0.92), rgba(35, 35, 35, 0.92)),
-    url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
-      center/cover fixed;
+  background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
+    no-repeat center center fixed;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(160, 80, 64, 0.3);

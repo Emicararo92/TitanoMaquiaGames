@@ -146,9 +146,6 @@ export default function HomeInfo() {
         )}
       </div>
 
-      {/* Divisor */}
-      <DivLineSmall />
-
       {/* Sección 2: grid 2x2 imagen|texto - texto|imagen */}
       <div className={styles.gridTwo}>
         <a href="#" className={styles.imageLink}>

@@ -1,84 +1,127 @@
-/* Styles/InfPat.module.css */
+/* Contenedor principal */
 .container {
   padding: 4rem 2rem;
-  background: linear-gradient(rgba(30, 30, 30, 0.85), rgba(30, 30, 30, 0.85)),
-    url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
-      center/cover fixed;
+  background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
+    no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+.title {
+  text-align: center;
+  color: #e9c789;
+  background: linear-gradient(to bottom, #a05040, #8a4030);
+  border: solid 0.5px wheat;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Controles de navegación */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.navButton {
+  background: linear-gradient(to bottom, #a05040, #8a4030);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(160, 80, 64, 0.3);
+  flex-shrink: 0;
+}
+
+.navButton:hover {
+  background: linear-gradient(to bottom, #b06050, #9a5040);
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(160, 80, 64, 0.4);
+}
+
+/* Botones de tab - CENTRADOS */
 .tabButtons {
   display: flex;
+  gap: 1rem;
+  padding: 1rem;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  flex: 1;
 }
 
 .tab {
-  background: rgba(123, 123, 121, 0.2);
-  color: #e9c789;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+  border: 2px solid transparent;
+  border-radius: 30px;
+  color: #000000; /* Texto negro cuando no está seleccionado */
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-  position: relative;
-  overflow: hidden;
-}
-
-.tab::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 3px;
-  background: #a05040;
-  transition: width 0.3s ease;
+  white-space: nowrap;
+  font-size: 1.1rem;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tab:hover {
-  background: rgba(231, 138, 102, 0.3);
-  color: #ffffff;
-}
-
-.tab:hover::before {
-  width: 100%;
+  background: rgba(255, 255, 255, 1); /* Fondo blanco sólido al hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  color: #000000; /* Mantener texto negro en hover */
 }
 
 .tab.active {
-  background: rgba(160, 80, 64, 0.6);
-  color: #ffffff;
+  background: linear-gradient(to bottom, #a05040, #8a4030);
+  color: white; /* Texto blanco cuando está activo */
+  border-color: #e9c789;
+  box-shadow: 0 6px 15px rgba(160, 80, 64, 0.5);
+  transform: translateY(-3px);
 }
 
-.tab.active::before {
-  width: 100%;
-  background: #e9c789;
-}
-
+/* Contenido del tab */
 .tabContent {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
+  text-align: center;
+  background: linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.95));
+  border-radius: 20px;
+  padding: 3rem;
+  border: 2px solid rgba(160, 80, 64, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  max-width: 700px;
+  width: 90%;
+  backdrop-filter: blur(10px);
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  height: 300px;
-  border-radius: 10px;
+  height: 350px;
+  margin-bottom: 2rem;
+  border-radius: 15px;
   overflow: hidden;
-  border: 2px solid rgba(233, 199, 137, 0.3);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.imageWrapper:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(161, 80, 64, 0.4);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+  border: 3px solid rgba(160, 80, 64, 0.3);
 }
 
 .image {
@@ -86,33 +129,93 @@
   transition: transform 0.5s ease;
 }
 
-.image:hover {
-  transform: scale(1.03);
+.imageWrapper:hover .image {
+  transform: scale(1.05);
 }
 
 .description {
-  color: #e9c789;
-  font-size: 1.1rem;
+  color: #d0d0d0;
+  font-size: 1.3rem;
   line-height: 1.6;
-  padding: 1.5rem;
-  background: rgba(123, 123, 121, 0.15);
-  border-radius: 10px;
-  backdrop-filter: blur(4px);
-  border-left: 3px solid #a05040;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* Responsive */
 @media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+    background-attachment: scroll;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .tabButtons {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .tab {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    min-width: 100px;
+  }
+
+  .navButton {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+
   .tabContent {
-    grid-template-columns: 1fr;
+    padding: 2rem;
+    width: 95%;
   }
 
   .imageWrapper {
-    height: 200px;
+    height: 250px;
+    margin-bottom: 1.5rem;
   }
 
   .description {
-    border-left: none;
-    border-top: 3px solid #a05040;
+    font-size: 1.1rem;
   }
+}
+
+/* Animación sutil para el cambio de tabs */
+.tabContent {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de overlay para mejor contraste */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
 }

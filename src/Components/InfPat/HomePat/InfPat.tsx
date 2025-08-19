@@ -1,12 +1,12 @@
-// components/SkillsShowcase/SkillsShowcase.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../../Styles/InfPat.module.css";
 
 export default function SkillsShowcase() {
   const [activeTab, setActiveTab] = useState<number>(1);
+  const [autoScroll, setAutoScroll] = useState<boolean>(true);
 
   const tabs = [
     {
@@ -39,20 +39,78 @@ export default function SkillsShowcase() {
     },
   ];
 
+  // Efecto para el cambio automático de tabs
+  useEffect(() => {
+    if (!autoScroll) return;
+
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev % tabs.length) + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [autoScroll, tabs.length]);
+
+  // Manejar clic en tab
+  const handleTabClick = (tabId: number) => {
+    setActiveTab(tabId);
+    setAutoScroll(false);
+
+    // Reanudar auto-scroll después de 10 segundos
+    setTimeout(() => setAutoScroll(true), 10000);
+  };
+
+  // Navegación manual con botones
+  const scrollToTab = (direction: "prev" | "next") => {
+    setAutoScroll(false);
+
+    let newTab;
+    if (direction === "next") {
+      newTab = (activeTab % tabs.length) + 1;
+    } else {
+      newTab = activeTab === 1 ? tabs.length : activeTab - 1;
+    }
+
+    setActiveTab(newTab);
+
+    // Reanudar auto-scroll después de 10 segundos
+    setTimeout(() => setAutoScroll(true), 10000);
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.tabButtons}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            className={`${styles.tab} ${
-              activeTab === tab.id ? styles.active : ""
-            }`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.title}
-          </button>
-        ))}
+      <h2 className={styles.title}>Nuestras Habilidades</h2>
+
+      {/* Controles de navegación */}
+      <div className={styles.controls}>
+        <button
+          className={styles.navButton}
+          onClick={() => scrollToTab("prev")}
+          aria-label="Anterior"
+        >
+          ‹
+        </button>
+
+        <div className={styles.tabButtons}>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              className={`${styles.tab} ${
+                activeTab === tab.id ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick(tab.id)}
+            >
+              {tab.title}
+            </button>
+          ))}
+        </div>
+
+        <button
+          className={styles.navButton}
+          onClick={() => scrollToTab("next")}
+          aria-label="Siguiente"
+        >
+          ›
+        </button>
       </div>
 
       <div className={styles.tabContent}>

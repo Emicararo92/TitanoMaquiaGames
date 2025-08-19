@@ -28,7 +28,7 @@ body {
 }
 
 body {
-  background: black;
+  background: rgba(224, 128, 19, 0.475);
   color: var(--foreground);
   font-family: var(--font-handlee), Arial, Helvetica, sans-serif;
 }

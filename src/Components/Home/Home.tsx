@@ -11,7 +11,7 @@ function Home() {
   return (
     <div>
       <Hero />
-      <DivLineSmall />
+      <DivLine logoSrc={"/Icon.png"} />
       <HomeInfo />
       <Banner
         backgroundImage={
@@ -19,7 +19,7 @@ function Home() {
         }
         slogan={"Infinite Pathways"}
       />
-      <DivLineSmall />
+      <DivLine logoSrc={"/Icon.png"} />
       <InfPat />
       <DivLineSmall />
       <ModelGallery3D />
