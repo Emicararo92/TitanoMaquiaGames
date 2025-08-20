@@ -78,7 +78,7 @@ export default function SkillsShowcase() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Como lo hicimos?</h2>
+      <h2 id="INF" className={styles.title}>Como lo hicimos?</h2>
 
       {/* Controles de navegación */}
       <div className={styles.controls}>

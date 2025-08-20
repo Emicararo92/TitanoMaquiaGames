@@ -4,6 +4,7 @@ import styles from "../../Styles/Banner.module.css";
 interface BannerProps {
   backgroundImage: string;
   slogan: string;
+  id: string;
   // onButtonClick?: () => void; // si querés botón luego
 }
 

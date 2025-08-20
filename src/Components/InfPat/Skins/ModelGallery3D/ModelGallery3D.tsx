@@ -21,6 +21,9 @@ export default function ModelGallery3D() {
 
   return (
     <div className={styles.container}>
+      {/* Título de la sección */}
+      <h2 className={styles.galleryTitle}>Nuestras Skins</h2>
+
       {expandedModel && (
         <div
           className={styles.modelOverlay}

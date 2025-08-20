@@ -14,22 +14,16 @@ function Home() {
       <DivLine logoSrc={"/Icon.png"} />
       <HomeInfo />
       <Banner
-        backgroundImage={
-          "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019641/BannerB_hebblh.jpg"
-        }
-        slogan={"Infinite Pathways"}
-      />
+        backgroundImage={"https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019641/BannerB_hebblh.jpg"}
+        slogan={"Infinite Pathways"} id={"INF"}      />
       <DivLine logoSrc={"/Icon.png"} />
       <InfPat />
       <DivLineSmall />
       <ModelGallery3D />
       <DivLineSmall />
       <Banner
-        backgroundImage={
-          "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019640/BannerA_rxexph.jpg"
-        }
-        slogan={"Quienes Somos"}
-      />
+        backgroundImage={"https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019640/BannerA_rxexph.jpg"}
+        slogan={"Quienes Somos"} id={"NOSOTROS"}      />
       <DivLine logoSrc={"/Icon.png"} />
       <Devs />
       <DivLineSmall />

@@ -23,10 +23,10 @@ export default function Navbar() {
         <Link href="#home" className={styles.link}>
           <Home size={18} /> Home
         </Link>
-        <Link href="#game" className={styles.link}>
+        <Link href="#INF" className={styles.link}>
           <Gamepad2 size={18} /> Infinity Pathways
         </Link>
-        <Link href="#about" className={styles.link}>
+        <Link href="#Nosotros" className={styles.link}>
           <Users size={18} /> Nosotros
         </Link>
         <Link href="#contact" className={styles.link}>
@@ -50,14 +50,14 @@ export default function Navbar() {
             <Home size={18} /> Home
           </Link>
           <Link
-            href="#game"
+            href="#INF"
             className={styles.mobileLink}
             onClick={() => setMobileOpen(false)}
           >
             <Gamepad2 size={18} /> Infinity Pathways
           </Link>
           <Link
-            href="#about"
+            href="#Nosotros"
             className={styles.mobileLink}
             onClick={() => setMobileOpen(false)}
           >
