@@ -1,7 +1,7 @@
-/* Base Styles */
+/* Contenedor principal */
 .videosGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2.5rem;
   padding: 3rem;
   background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
@@ -12,65 +12,42 @@
   justify-content: center;
 }
 
-/* Pokémon Card Container */
+/* Cartas de video */
 .card {
   position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(35, 35, 35, 0.9),
+    rgba(25, 25, 25, 0.9)
+  );
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 2px solid #a05040;
+  box-shadow: 0 10px 30px rgba(160, 80, 64, 0.3);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
-  border: 5px solid #3d7dca;
   cursor: pointer;
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .card:hover {
-  transform: translateY(-15px) rotateX(5deg) scale(1.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  border-color: #ffcb05;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(160, 80, 64, 0.4);
+  border-color: #e9c789;
 }
 
-/* Card Header Effect */
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: linear-gradient(90deg, #ff0000, #ffcb05, #3d7dca);
-  z-index: 10;
-}
-
-/* Card Glow Effect */
-.card::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  background: linear-gradient(45deg, #ff0000, #ffcb05, #3d7dca);
-  z-index: -1;
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover::after {
-  opacity: 0.6;
-}
-
-/* Media Container */
+/* Contenedor de video */
 .videoWrapper {
   position: relative;
   width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+  height: 250px;
+  border-radius: 15px;
   overflow: hidden;
-  border-bottom: 5px solid #cc0000;
+  margin-bottom: 1.2rem;
+  border: 2px solid rgba(160, 80, 64, 0.5);
 }
 
-/* Thumbnail Style */
+/* Miniaturas */
 .thumbnail {
   position: absolute;
   top: 0;
@@ -78,17 +55,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.4s ease;
-  background: #fff;
-  z-index: 2;
+  transition: opacity 0.3s ease;
+  border-radius: 13px;
 }
 
 .thumbnail.hidden {
   opacity: 0;
-  transform: scale(0.9);
 }
 
-/* Video Style */
+/* Videos */
 .video {
   position: absolute;
   top: 0;
@@ -97,122 +72,174 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.1);
-  transition: all 0.4s ease;
-  z-index: 1;
-  background: #000;
+  transition: opacity 0.3s ease;
+  border-radius: 13px;
 }
 
 .video.visible {
   opacity: 1;
-  transform: scale(1);
 }
 
-/* Title Style */
+/* Título */
 .title {
   text-align: center;
-  padding: 1.2rem 0.5rem;
-  margin: 0;
-  font-family: "Pokemon Solid", sans-serif;
-  color: #3d7dca;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  background: linear-gradient(to right, #ffcb05, #ffde59);
-  -webkit-text-stroke: 1.5px #2a75bb;
-  text-shadow: 3px 3px 0 #cc0000;
-  position: relative;
-  z-index: 3;
+  color: #e9c789;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  padding: 0.8rem;
+  background: linear-gradient(to bottom, #a05040, #8a4030);
+  border-radius: 10px;
+  border: 1px solid #e9c789;
 }
 
-/* Type Badge */
-.title::after {
-  content: attr(data-type);
-  position: absolute;
-  top: -12px;
-  right: 20px;
-  background: #3d7dca;
-  color: white;
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-family: Arial, sans-serif;
-  -webkit-text-stroke: 0;
-  text-shadow: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Description Panel */
+/* Descripción */
 .description {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
+  background: linear-gradient(
+    to top,
+    rgba(160, 80, 64, 0.95),
+    rgba(140, 60, 44, 0.9)
+  );
+  color: white;
   padding: 1.5rem;
+  border-radius: 0 0 18px 18px;
   transform: translateY(100%);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  font-family: "Courier New", monospace;
-  font-size: 0.9rem;
-  border-top: 5px solid #ffcb05;
-  z-index: 4;
-  line-height: 1.6;
-  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  border-top: 2px solid #e9c789;
 }
 
 .card:hover .description {
   transform: translateY(0);
 }
 
-/* Pulsing Animation */
-@keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 10px 0 rgba(255, 203, 5, 0.7);
+.description p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.description strong {
+  color: #e9c789;
+  font-weight: 600;
+}
+
+/* Efectos de hover mejorados */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(160, 80, 64, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .videosGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
   }
-  50% {
-    box-shadow: 0 0 20px 10px rgba(255, 203, 5, 0.4);
-  }
-  100% {
-    box-shadow: 0 0 10px 0 rgba(255, 203, 5, 0.7);
+
+  .videoWrapper {
+    height: 220px;
   }
 }
 
-.card:hover {
-  animation: pulseGlow 2s infinite;
-}
-
-/* Responsive Adjustments */
 @media (max-width: 768px) {
   .videosGrid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
     padding: 1.5rem;
-    gap: 1.5rem;
+    background-attachment: scroll;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+
+  .videoWrapper {
+    height: 200px;
   }
 
   .title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
+
+  .description {
+    padding: 1.2rem;
+  }
+
+  .description p {
+    font-size: 0.9rem;
   }
 }
 
-/* Debug Message (Easter Egg) */
-.videoWrapper::before {
-  content: "console.log('Gotta Catch All The Bugs!')";
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-family: "Courier New", monospace;
-  font-size: 0.7rem;
-  color: #ffcb05;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 0.2rem;
-  z-index: 5;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+@media (max-width: 480px) {
+  .videosGrid {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+
+  .videoWrapper {
+    height: 180px;
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+  }
+
+  .description {
+    padding: 1rem;
+  }
 }
 
-.card:hover .videoWrapper::before {
-  opacity: 1;
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease;
+}
+
+/* Solución para problemas de video */
+.video {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Prevención de layout shift */
+.videoWrapper {
+  contain: content;
 }

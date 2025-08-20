@@ -1,5 +1,5 @@
 .footer {
-  background: linear-gradient(to right, #a05040, #7b7b79);
+  background: linear-gradient(to right, #f6b365, #f6b365);
   padding: 2rem 1rem;
   border-top: 3px solid #e9c789;
 }
@@ -20,7 +20,7 @@
 }
 
 .icon {
-  color: #e9c789;
+  color: black;
   width: 24px;
   height: 24px;
   transition: all 0.3s;
@@ -37,7 +37,7 @@
 }
 
 .legal p {
-  color: #e9c789;
+  color: black;
   font-size: 0.85rem;
   margin-bottom: 0.8rem;
 }
@@ -50,7 +50,7 @@
 }
 
 .legalLinks a {
-  color: #e9c789;
+  color: black;
   font-weight: 600;
   font-size: 0.9rem;
   transition: color 0.3s;
@@ -63,7 +63,7 @@
 
 .gameCredits {
   text-align: center;
-  color: #e9c789;
+  color: black;
   font-style: italic;
   font-size: 0.9rem;
   order: 3;

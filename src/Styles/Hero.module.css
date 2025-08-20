@@ -1,14 +1,68 @@
+/* Hero.module.css */
+
+/* Contenedor principal del hero */
 .hero {
   position: relative;
   width: 100%;
-  height: 60vh;
+  min-height: 300px;
+  max-height: 500px;
   background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
-    no-repeat center center fixed;
+    no-repeat center center;
+  background-size: cover;
+  border: 3px solid #f6b365;
+  border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Overlay solo para el logo */
+.logoOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.816);
+  backdrop-filter: blur(6px);
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Logo centrado */
+.heroLogo {
+  margin-top: rem;
+  width: 180px;
+  height: 250px;
+  margin-bottom: 1rem;
+}
+
+/* Slogan */
+.heroSlogan {
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 1.5rem;
+  color: #f6b365;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Responsive */
 @media (min-width: 768px) {
   .hero {
-    height: 100vh;
+    min-height: 600px;
+    max-height: 800px;
+  }
+
+  .heroLogo {
+    width: 250px;
+  }
+
+  .heroSlogan {
+    font-size: 2rem;
   }
 }

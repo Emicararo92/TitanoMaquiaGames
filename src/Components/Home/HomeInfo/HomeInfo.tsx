@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import DivLineSmall from "../../../utils/DivLine/DivLineSmall";
 import Image from "next/image";
 import styles from "../../../Styles/HomeInfo.module.css";
 

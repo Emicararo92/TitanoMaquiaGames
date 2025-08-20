@@ -1,6 +1,5 @@
 /* HomeInfo.module.css - Versión Mejorada */
 .homeInfoContainer {
-  padding: 4rem 1rem;
   background: rgba(224, 128, 19, 0.475);
 }
 
@@ -10,7 +9,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 3rem 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
   background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
     no-repeat center center fixed;
   border-radius: 16px;

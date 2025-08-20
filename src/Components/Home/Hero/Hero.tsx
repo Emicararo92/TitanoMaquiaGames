@@ -1,4 +1,6 @@
 // components/Hero/Hero.tsx
+"use client";
+
 import Image from "next/image";
 import styles from "../../../Styles/Hero.module.css";
 
@@ -11,6 +13,7 @@ export default function Hero() {
       </nav>
 
       <section className={styles.hero}>
+        {/* Banner de fondo */}
         <div className={styles.bannerContainer}>
           <Image
             src="/Banner.png"
@@ -19,6 +22,17 @@ export default function Hero() {
             priority
             quality={85}
             className={styles.bannerImage}
+          />
+        </div>
+
+        {/* Logo con overlay y slogan */}
+        <div className={styles.logoOverlay}>
+          <Image
+            src="/Icon.png"
+            alt="Logo central"
+            className={styles.heroLogo}
+            width={250}
+            height={250}
           />
         </div>
       </section>

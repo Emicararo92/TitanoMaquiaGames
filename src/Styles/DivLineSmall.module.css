@@ -1,7 +1,7 @@
 .divider {
   width: 100%;
   height: 3px;
-  background: linear-gradient(to right, #a05040, #e78a66);
+  background: linear-gradient(to right, #f6b365, #f6b365);
   margin: 1.5rem 0;
   position: relative;
 }
@@ -11,7 +11,7 @@
   top: -0.8rem;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #a05040;
+  background-color: #f6b365;
   color: #e9c789;
   padding: 0 1rem;
   font-size: 0.9rem;
