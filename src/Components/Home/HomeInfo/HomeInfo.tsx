@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "../../../Styles/HomeInfo.module.css";
 
@@ -74,6 +74,9 @@ const secondSectionData = [
 export default function HomeInfo() {
   const [activeModalId, setActiveModalId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Efecto para el fondo de partículas
 
   // Efecto para controlar el scroll del body cuando el modal está abierto
   useEffect(() => {
@@ -118,59 +121,87 @@ export default function HomeInfo() {
 
   return (
     <div className={styles.homeInfoContainer}>
+      {/* Fondo animado con canvas */}
+
       {/* Sección 1: 4 cards */}
+      <div className={styles.sectionTitle}>
+        <h2>Somos Titano Maquia Games</h2>
+        <div className={styles.titleUnderline}></div>
+      </div>
+
       <div className={styles.gridFour}>
         {firstSectionCards.map(
           ({ id, imgSrc, altText, shortDesc, longDesc }) => (
             <div key={id} className={styles.card}>
-              <a href="#" className={styles.cardLink} aria-label={altText}>
-                <Image
-                  src={imgSrc}
-                  alt={altText}
-                  className={styles.cardImage}
-                  width={120}
-                  height={120}
-                />
-              </a>
-              <p className={styles.shortDesc}>{shortDesc}</p>
-              <button
-                className={styles.toggleBtn}
-                onClick={() => openModal(id)}
-                aria-label={`Ver más sobre ${shortDesc}`}
-              >
-                Ver más
-              </button>
+              <div className={styles.cardInner}>
+                <div className={styles.cardImageContainer}>
+                  <Image
+                    src={imgSrc}
+                    alt={altText}
+                    className={styles.cardImage}
+                    width={280}
+                    height={180}
+                  />
+                  <div className={styles.cardOverlay}></div>
+                </div>
+                <p className={styles.shortDesc}>{shortDesc}</p>
+                <button
+                  className={styles.toggleBtn}
+                  onClick={() => openModal(id)}
+                  aria-label={`Ver más sobre ${shortDesc}`}
+                >
+                  <span>Ver más</span>
+                  <div className={styles.buttonHoverEffect}></div>
+                </button>
+                <div className={styles.cardGlow}></div>
+              </div>
             </div>
           )
         )}
       </div>
 
       {/* Sección 2: grid 2x2 imagen|texto - texto|imagen */}
+      <div className={styles.sectionTitle}>
+        <h2>Novedades</h2>
+        <div className={styles.titleUnderline}></div>
+      </div>
+
       <div className={styles.gridTwo}>
-        <a href="#" className={styles.imageLink}>
-          <Image
-            src={secondSectionData[0].imgSrc}
-            alt={secondSectionData[0].altText}
-            width={120}
-            height={120}
-          />
-        </a>
-        <div className={styles.text}>
-          <h3>{secondSectionData[0].title}</h3>
-          <p>{secondSectionData[0].text}</p>
+        <div className={styles.featuredItem}>
+          <div className={styles.imageContainer}>
+            <Image
+              src={secondSectionData[0].imgSrc}
+              alt={secondSectionData[0].altText}
+              width={400}
+              height={250}
+              className={styles.featuredImage}
+            />
+            <div className={styles.imageHoverEffect}></div>
+          </div>
+          <div className={styles.textContent}>
+            <h3>{secondSectionData[0].title}</h3>
+            <p>{secondSectionData[0].text}</p>
+            <div className={styles.textGlow}></div>
+          </div>
         </div>
-        <div className={styles.text}>
-          <h3>{secondSectionData[1].title}</h3>
-          <p>{secondSectionData[1].text}</p>
+
+        <div className={styles.featuredItem}>
+          <div className={styles.textContent}>
+            <h3>{secondSectionData[1].title}</h3>
+            <p>{secondSectionData[1].text}</p>
+            <div className={styles.textGlow}></div>
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={secondSectionData[1].imgSrc}
+              alt={secondSectionData[1].altText}
+              width={400}
+              height={250}
+              className={styles.featuredImage}
+            />
+            <div className={styles.imageHoverEffect}></div>
+          </div>
         </div>
-        <a href="#" className={styles.imageLink}>
-          <Image
-            src={secondSectionData[1].imgSrc}
-            alt={secondSectionData[1].altText}
-            width={120}
-            height={120}
-          />
-        </a>
       </div>
 
       {/* Modal - Renderizado condicional mejorado */}
@@ -180,27 +211,34 @@ export default function HomeInfo() {
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
           >
-            {firstSectionCards
-              .filter((card) => card.id === activeModalId)
-              .map((card) => (
-                <React.Fragment key={card.id}>
-                  <Image
-                    src={card.imgSrc}
-                    alt={card.altText}
-                    width={300}
-                    height={200}
-                  />
-                  <h3>{card.shortDesc}</h3>
-                  <p>{card.longDesc}</p>
-                  <button
-                    className={styles.closeModalBtn}
-                    onClick={closeModal}
-                    aria-label="Cerrar modal"
-                  >
-                    Cerrar
-                  </button>
-                </React.Fragment>
-              ))}
+            <div className={styles.modalInner}>
+              {firstSectionCards
+                .filter((card) => card.id === activeModalId)
+                .map((card) => (
+                  <React.Fragment key={card.id}>
+                    <div className={styles.modalImageContainer}>
+                      <Image
+                        src={card.imgSrc}
+                        alt={card.altText}
+                        width={400}
+                        height={250}
+                        className={styles.modalImage}
+                      />
+                      <div className={styles.modalImageGlow}></div>
+                    </div>
+                    <h3>{card.shortDesc}</h3>
+                    <p>{card.longDesc}</p>
+                    <button
+                      className={styles.closeModalBtn}
+                      onClick={closeModal}
+                      aria-label="Cerrar modal"
+                    >
+                      <span>Cerrar</span>
+                      <div className={styles.closeBtnEffect}></div>
+                    </button>
+                  </React.Fragment>
+                ))}
+            </div>
           </div>
         </div>
       )}

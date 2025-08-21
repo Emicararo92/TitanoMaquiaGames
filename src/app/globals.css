@@ -33,6 +33,31 @@ body {
   font-family: var(--font-handlee), Arial, Helvetica, sans-serif;
 }
 
+/* Asegurar que el html y body ocupen toda la altura */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mejoras para el fondo fijo en móviles */
+@media (max-width: 768px) {
+  .fixedBackground {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Opcional: mejorar el rendimiento con transform */
+.fixedBackground {
+  transform: translateZ(0);
+}
+
+/* Asegurar que el contenido principal tenga posición relativa */
+.main-content {
+  position: relative;
+}
+
 @media screen and (max-width: 768px) {
   .mainContent {
     padding-top: 90px;

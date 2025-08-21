@@ -1,119 +1,383 @@
-  /* components/Navbar/styles.module.css */
-  .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #a05040;
-    z-index: 1000;
-  }
+/* NavBar.module.css - Advanced Gaming Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.75rem 0;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  overflow: hidden;
+}
 
-  .logo img {
-    height: auto;
-    transition: transform 0.3s;
-  }
+.navbar::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(47, 128, 237, 0.6),
+    rgba(255, 107, 53, 0.8),
+    rgba(47, 128, 237, 0.6),
+    transparent
+  );
+  opacity: 0.7;
+}
 
-  .logo:hover img {
-    transform: scale(1.05);
+.navbar.scrolled {
+  padding: 0.5rem 0;
+  backdrop-filter: blur(12px);
+  background: rgba(10, 12, 28, 0.85);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.navbar.scrolled::before {
+  opacity: 1;
+}
+
+.canvasBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Logo Styles */
+.logo {
+  position: relative;
+  z-index: 5;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+}
+
+.logoImage {
+  transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.6));
+  position: relative;
+  z-index: 2;
+}
+
+.logoGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 107, 53, 0.4) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.logo:hover .logoImage {
+  transform: rotate(15deg) scale(1.15);
+  filter: drop-shadow(0 0 12px rgba(255, 107, 53, 0.8));
+}
+
+.logo:hover .logoGlow {
+  opacity: 1;
+  width: 60px;
+  height: 60px;
+}
+
+/* Desktop Navigation */
+.links {
+  display: flex;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #cbd0f7;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  position: relative;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.linkIcon {
+  transition: transform 0.3s ease;
+}
+
+.linkHoverEffect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(47, 128, 237, 0.15),
+    rgba(255, 107, 53, 0.15)
+  );
+  transition: height 0.3s ease;
+  z-index: -1;
+  border-radius: 6px;
+}
+
+.link:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.link:hover .linkIcon {
+  transform: scale(1.2) translateY(-1px);
+}
+
+.link:hover .linkHoverEffect {
+  height: 100%;
+}
+
+/* Mobile Menu Button */
+.mobileButton {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 100;
+  width: 30px;
+  height: 30px;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.hamburgerLine {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #ff6b35, #2f80ed);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  transform-origin: center;
+}
+
+.hamburgerLine:nth-child(1) {
+  transform: translateY(0);
+}
+
+.hamburgerLine:nth-child(2) {
+  opacity: 1;
+}
+
+.hamburgerLine:nth-child(3) {
+  transform: translateY(0);
+}
+
+.hamburgerLine.active:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+  background: #ff6b35;
+}
+
+.hamburgerLine.active:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburgerLine.active:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+  background: #2f80ed;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.mobileMenu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileMenuBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(15, 18, 40, 0.98) 0%,
+    rgba(8, 10, 24, 0.98) 100%
+  );
+  backdrop-filter: blur(15px);
+}
+
+.mobileMenuContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  z-index: 2;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #cbd0f7;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 1.2rem 1.8rem;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.mobileMenu.open .mobileLink {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobileLinkBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(47, 128, 237, 0.1),
+    rgba(255, 107, 53, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: 12px;
+}
+
+.mobileLink:hover {
+  color: #ffffff;
+  transform: translateX(8px) scale(1.05);
+}
+
+.mobileLink:hover .mobileLinkBg {
+  opacity: 1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
   }
 
   .links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #e9c789;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-
-  .link:hover {
-    color: #ffffff;
-  }
-
-  .linkActive {
-    position: relative;
-    color: white !important;
-  }
-
-  .linkActive::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 3px;
-    background: #e9c789;
-    border-radius: 3px;
-    animation: skillLoad 2s infinite;
-  }
-
-  @keyframes skillLoad {
-    0% {
-      width: 0;
-      opacity: 0;
-    }
-    50% {
-      width: 20px;
-      opacity: 1;
-    }
-    100% {
-      width: 0;
-      opacity: 0;
-    }
-  }
-
-  .link:hover {
-    text-shadow: 0 0 8px #e9c789;
-  }
-  .mobileButton {
     display: none;
-    cursor: pointer;
   }
 
-  /* Mobile menu oculto por defecto */
-  .mobileMenu {
-    position: absolute;
-    top: 80px; /* altura navbar */
-    right: 0;
-    width: 100%;
-    background-color: #a05040;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 0;
-    gap: 1rem;
-    z-index: 1000;
-  }
-
-  /* Estilos para links mobile */
-  .mobileLink {
-    color: #e9c789;
-    font-weight: 500;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .mobileLink:hover {
-    color: #ffffff;
-  }
-
-  /* Media queries */
-  @media (max-width: 768px) {
-    .links {
-      display: none; /* ocultar links desktop */
-    }
   .mobileButton {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .navbar {
+    padding: 0.6rem 0;
+  }
+
+  .navbar.scrolled {
+    padding: 0.4rem 0;
+  }
+}
+
+/* Animation Delays for Mobile Links */
+.mobileLink:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.mobileLink:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.mobileLink:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.mobileLink:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+/* Pulse Animation for Logo */
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(255, 107, 53, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 107, 53, 0.8));
+  }
+  100% {
+    filter: drop-shadow(0 0 5px rgba(255, 107, 53, 0.6));
+  }
+}
+
+.logoImage {
+  animation: pulse 3s infinite ease-in-out;
 }

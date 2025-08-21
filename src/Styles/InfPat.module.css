@@ -1,27 +1,39 @@
-/* Contenedor principal */
+/* Infinity Pathways.module.css - Versión Mobile Optimizada */
 .container {
-  padding: 4rem 2rem;
-  background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
-    no-repeat center center fixed;
-  background-size: cover;
-  min-height: 100vh;
+  padding: 5rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  min-height: 100vh;
 }
 
 .title {
   text-align: center;
-  color: #e9c789;
-  background: linear-gradient(to bottom, #a05040, #8a4030);
-  border: solid 0.5px wheat;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px rgba(47, 128, 237, 0.4);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b35, #2f80ed);
+  border-radius: 2px;
 }
 
 /* Controles de navegación */
@@ -32,34 +44,55 @@
   gap: 2rem;
   margin-bottom: 3rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .navButton {
-  background: linear-gradient(to bottom, #a05040, #8a4030);
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
   color: white;
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(160, 80, 64, 0.3);
+  box-shadow: 0 5px 15px rgba(47, 128, 237, 0.3);
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.navButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.6s ease;
 }
 
 .navButton:hover {
-  background: linear-gradient(to bottom, #b06050, #9a5040);
   transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(160, 80, 64, 0.4);
+  box-shadow: 0 8px 20px rgba(47, 128, 237, 0.5);
 }
 
-/* Botones de tab - CENTRADOS */
+.navButton:hover::before {
+  left: 100%;
+}
+
+/* Botones de tab */
 .tabButtons {
   display: flex;
   gap: 1rem;
@@ -70,83 +103,154 @@
 }
 
 .tab {
-  padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
-  border: 2px solid transparent;
-  border-radius: 30px;
-  color: #000000; /* Texto negro cuando no está seleccionado */
+  padding: 1.2rem 2.2rem;
+  background: rgba(18, 22, 45, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(47, 128, 237, 0.3);
+  border-radius: 50px;
+  color: #cbd0f7;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
   font-size: 1.1rem;
-  min-width: 120px;
+  min-width: 130px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: "Exo", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: all 0.6s ease;
 }
 
 .tab:hover {
-  background: rgba(255, 255, 255, 1); /* Fondo blanco sólido al hover */
+  background: rgba(18, 22, 45, 0.9);
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  color: #000000; /* Mantener texto negro en hover */
+  box-shadow: 0 6px 18px rgba(47, 128, 237, 0.4);
+  color: #ffffff;
+}
+
+.tab:hover::before {
+  left: 100%;
 }
 
 .tab.active {
-  background: linear-gradient(to bottom, #a05040, #8a4030);
-  color: white; /* Texto blanco cuando está activo */
-  border-color: #e9c789;
-  box-shadow: 0 6px 15px rgba(160, 80, 64, 0.5);
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(47, 128, 237, 0.6);
   transform: translateY(-3px);
 }
 
 /* Contenido del tab */
 .tabContent {
   text-align: center;
-  background: linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.95));
+  background: rgba(18, 22, 45, 0.7);
+  backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 3rem;
-  border: 2px solid rgba(160, 80, 64, 0.4);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  max-width: 700px;
+  border: 1px solid rgba(47, 128, 237, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  max-width: 800px;
   width: 90%;
-  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s ease;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  height: 350px;
-  margin-bottom: 2rem;
+  height: 400px;
+  margin-bottom: 2.5rem;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
-  border: 3px solid rgba(160, 80, 64, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(47, 128, 237, 0.3);
 }
 
 .image {
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(10, 12, 28, 0.7) 100%
+  );
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
 .imageWrapper:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+.imageWrapper:hover .imageOverlay {
+  opacity: 0.4;
 }
 
 .description {
-  color: #d0d0d0;
-  font-size: 1.3rem;
+  color: #ffffff;
+  font-size: 1.4rem;
   line-height: 1.6;
   margin: 0;
   font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Exo", sans-serif;
 }
 
-/* Responsive */
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de brillo para elementos activos */
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 6px 20px rgba(47, 128, 237, 0.6);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(47, 128, 237, 0.8);
+  }
+}
+
+.tab.active {
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+/* Responsive Design - MOBILE FIRST */
 @media (max-width: 768px) {
   .container {
-    padding: 2rem 1rem;
-    background-attachment: scroll;
+    padding: 3rem 1rem;
   }
 
   .title {
@@ -156,30 +260,35 @@
 
   .controls {
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+  }
+
+  /* Ocultar flechas en mobile */
+  .navButton {
+    display: none;
   }
 
   .tabButtons {
     gap: 0.5rem;
     padding: 0.5rem;
+    width: 100%;
+    justify-content: center;
   }
 
   .tab {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
     min-width: 100px;
-  }
-
-  .navButton {
-    width: 45px;
-    height: 45px;
-    font-size: 1.5rem;
+    flex: 1;
+    max-width: 140px;
   }
 
   .tabContent {
     padding: 2rem;
     width: 95%;
+    margin: 0 1rem;
   }
 
   .imageWrapper {
@@ -192,30 +301,66 @@
   }
 }
 
-/* Animación sutil para el cambio de tabs */
-.tabContent {
-  animation: fadeIn 0.5s ease;
+@media (max-width: 480px) {
+  .container {
+    padding: 2rem 0.5rem;
+  }
+
+  .title {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tabButtons {
+    gap: 0.4rem;
+    padding: 0.4rem;
+  }
+
+  .tab {
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+    min-width: 80px;
+    max-width: 120px;
+  }
+
+  .tabContent {
+    padding: 1.5rem;
+  }
+
+  .imageWrapper {
+    height: 200px;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
+/* Desktop específico */
+@media (min-width: 769px) {
+  .controls {
+    gap: 2rem;
+    max-width: 800px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .tab {
+    padding: 1rem 1.8rem;
+    min-width: 110px;
+    font-size: 1rem;
+  }
+
+  .navButton {
+    display: flex; /* Asegurar que las flechas se vean en desktop */
   }
 }
 
-/* Efecto de overlay para mejor contraste */
-.container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: -1;
+@media (min-width: 1025px) {
+  .controls {
+    max-width: 900px;
+  }
+
+  .tab {
+    padding: 1.2rem 2.2rem;
+    min-width: 130px;
+  }
 }

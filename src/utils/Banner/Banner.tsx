@@ -17,9 +17,6 @@ export default function Banner({ backgroundImage, slogan }: BannerProps) {
     >
       <div className={styles.overlay}>
         <h1 className={styles.slogan}>{slogan}</h1>
-        {/* <button className={styles.cta} onClick={onButtonClick}> */}
-        {/*   Call to action */}
-        {/* </button> */}
       </div>
     </section>
   );

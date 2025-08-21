@@ -7,6 +7,7 @@ import styles from "../../../Styles/InfPat.module.css";
 export default function SkillsShowcase() {
   const [activeTab, setActiveTab] = useState<number>(1);
   const [autoScroll, setAutoScroll] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const tabs = [
     {
@@ -39,6 +40,18 @@ export default function SkillsShowcase() {
     },
   ];
 
+  // Detectar si es mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Efecto para el cambio automático de tabs
   useEffect(() => {
     if (!autoScroll) return;
@@ -59,8 +72,10 @@ export default function SkillsShowcase() {
     setTimeout(() => setAutoScroll(true), 10000);
   };
 
-  // Navegación manual con botones
+  // Navegación manual con botones (solo para desktop)
   const scrollToTab = (direction: "prev" | "next") => {
+    if (isMobile) return; // No hacer nada en mobile
+
     setAutoScroll(false);
 
     let newTab;
@@ -78,17 +93,24 @@ export default function SkillsShowcase() {
 
   return (
     <div className={styles.container}>
-      <h2 id="INF" className={styles.title}>Como lo hicimos?</h2>
+      <h2 id="INF" className={styles.title}>
+        ¿Cómo lo hicimos?
+      </h2>
 
       {/* Controles de navegación */}
       <div className={styles.controls}>
-        <button
-          className={styles.navButton}
-          onClick={() => scrollToTab("prev")}
-          aria-label="Anterior"
-        >
-          ‹
-        </button>
+        {/* Flechas solo visible en desktop */}
+        {!isMobile && (
+          <>
+            <button
+              className={styles.navButton}
+              onClick={() => scrollToTab("prev")}
+              aria-label="Anterior"
+            >
+              ‹
+            </button>
+          </>
+        )}
 
         <div className={styles.tabButtons}>
           {tabs.map((tab) => (
@@ -104,13 +126,18 @@ export default function SkillsShowcase() {
           ))}
         </div>
 
-        <button
-          className={styles.navButton}
-          onClick={() => scrollToTab("next")}
-          aria-label="Siguiente"
-        >
-          ›
-        </button>
+        {/* Flechas solo visible en desktop */}
+        {!isMobile && (
+          <>
+            <button
+              className={styles.navButton}
+              onClick={() => scrollToTab("next")}
+              aria-label="Siguiente"
+            >
+              ›
+            </button>
+          </>
+        )}
       </div>
 
       <div className={styles.tabContent}>
@@ -122,6 +149,7 @@ export default function SkillsShowcase() {
             className={styles.image}
             priority
           />
+          <div className={styles.imageOverlay}></div>
         </div>
         <p className={styles.description}>
           {tabs.find((t) => t.id === activeTab)?.desc}

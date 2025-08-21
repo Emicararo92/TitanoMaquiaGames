@@ -1,165 +1,414 @@
+/* MG3D.module.css - Gaming Skins Gallery */
 .container {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: 2rem;
-  background: url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
-    no-repeat center center fixed;
+  padding: 4rem 2rem;
   overflow-x: hidden;
-}
-
-.cardsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2.5rem; /* Más espacio entre cards */
-  padding: 1.5rem;
 }
 
 .galleryTitle {
   text-align: center;
-  color: #e9c789;
-  background: linear-gradient(to bottom, #a05040, #8a4030);
-  border: solid 0.5px wheat;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px rgba(47, 128, 237, 0.4);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.galleryTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b35, #2f80ed);
+  border-radius: 2px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .modelCard {
   position: relative;
-  height: 320px; /* Altura aumentada */
-  background: rgba(35, 35, 35, 0.6); /* Fondo más oscuro */
-  backdrop-filter: blur(8px); /* Efecto vidrio */
+  height: 380px;
+  background: rgba(18, 22, 45, 0.7);
+  backdrop-filter: blur(12px);
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 1px solid rgba(160, 80, 64, 0.4);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(47, 128, 237, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   z-index: 1;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modelCard.blurred {
+  filter: blur(4px);
+  opacity: 0.6;
+  transform: scale(0.98);
+}
+
+.cardContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.modelCard canvas {
+  width: 100% !important;
+  height: 70% !important;
+}
+
+.skinInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent 0%, rgba(10, 12, 28, 0.9) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.skinName {
+  color: #ffffff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.7);
+}
+
+.skinDescription {
+  color: #cbd0f7;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.rarityIndicator {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.rarityText {
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.cardHoverEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 107, 53, 0.2) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .modelCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 25px rgba(160, 80, 64, 0.3),
-    inset 0 0 0 1px rgba(231, 199, 137, 0.2);
-  background: rgba(45, 45, 45, 0.7);
-  transform: translateY(-3px);
-  opacity: 0.9;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(47, 128, 237, 0.25);
+  border-color: rgba(47, 128, 237, 0.5);
 }
 
+.modelCard:hover .cardHoverEffect {
+  opacity: 1;
+}
+
+/* Modal Overlay */
 .modelOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(5, 5, 5, 0.95); /* Fondo más oscuro para overlay */
-  backdrop-filter: blur(12px); /* Más blur */
-  z-index: 10;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(15px);
+  z-index: 20;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
+.modelOverlay.closing {
+  opacity: 0;
+}
+
+/* Vista Expandida */
 .expandedView {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 85vw;
+  transform: translate(-50%, -50%) scale(1);
+  width: 90vw;
   height: 85vh;
-  background: rgba(30, 30, 30, 0.7);
-  backdrop-filter: blur(20px);
+  background: rgba(18, 22, 45, 0.95);
+  backdrop-filter: blur(25px);
   border-radius: 20px;
-  border: 1px solid rgba(160, 80, 64, 0.5);
-  box-shadow: 0 0 40px rgba(160, 80, 64, 0.4),
-    inset 0 0 20px rgba(231, 199, 137, 0.1);
-  z-index: 1000;
+  border: 1px solid rgba(47, 128, 237, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  z-index: 30;
+  display: flex;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.expandedView.closing {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.expandedContent {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.modelContainer {
+  flex: 1;
+  position: relative;
+}
+
+.modelContainer canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.detailsPanel {
+  width: 350px;
+  padding: 2.5rem;
+  background: rgba(10, 12, 28, 0.8);
+  backdrop-filter: blur(15px);
+  border-left: 1px solid rgba(47, 128, 237, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.skinTitle {
+  color: #ffffff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.skinFullDescription {
+  color: #cbd0f7;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.skinStats {
+  margin-bottom: 2rem;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(47, 128, 237, 0.2);
+}
+
+.statLabel {
+  color: #cbd0f7;
+  font-weight: 500;
+}
+
+.statValue {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.equipButton {
+  position: relative;
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  color: white;
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
   overflow: hidden;
+  margin-top: auto;
+}
+
+.buttonGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.6s ease;
+}
+
+.equipButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(47, 128, 237, 0.4);
+}
+
+.equipButton:hover .buttonGlow {
+  left: 100%;
 }
 
 .closeButton {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  background: rgba(160, 80, 64, 0.9);
-  color: #e9c789;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  color: white;
   border: none;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   font-size: 1.8rem;
   cursor: pointer;
-  z-index: 30;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(231, 199, 137, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .closeButton:hover {
-  background: #e78a66;
-  color: #1a1a1a;
   transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(47, 128, 237, 0.5);
 }
 
-/* Efecto de borde sutil al hacer hover */
-.modelCard::before {
-  content: "";
+.loading {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 16px;
-  padding: 2px;
-  background: linear-gradient(
-    135deg,
-    rgba(231, 199, 137, 0.4),
-    rgba(231, 138, 102, 0.2)
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #cbd0f7;
+  font-size: 1.1rem;
 }
 
-.modelCard:hover::before {
-  opacity: 1;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .expandedView {
+    flex-direction: column;
+    width: 95vw;
+    height: 90vh;
+  }
+
+  .detailsPanel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(47, 128, 237, 0.3);
+    max-height: 40%;
+  }
+
+  .modelContainer {
+    height: 60%;
+  }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: 2rem 1rem;
+  }
+
+  .galleryTitle {
+    font-size: 2.2rem;
   }
 
   .cardsGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .modelCard {
-    height: 250px;
+    height: 320px;
   }
 
   .expandedView {
-    width: 95vw;
-    height: 60vh;
-    border-radius: 12px;
+    width: 98vw;
+    height: 95vh;
+    border-radius: 15px;
+  }
+
+  .detailsPanel {
+    padding: 1.5rem;
+  }
+
+  .skinTitle {
+    font-size: 1.6rem;
   }
 
   .closeButton {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     font-size: 1.5rem;
-    top: 20px;
-    right: 20px;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .galleryTitle {
+    font-size: 1.8rem;
+  }
+
+  .skinInfo {
+    padding: 1rem;
+  }
+
+  .skinName {
+    font-size: 1.1rem;
+  }
+
+  .skinDescription {
+    font-size: 0.8rem;
+  }
+
+  .detailsPanel {
+    padding: 1rem;
+  }
+
+  .skinTitle {
+    font-size: 1.4rem;
+  }
+
+  .skinFullDescription {
+    font-size: 1rem;
   }
 }
