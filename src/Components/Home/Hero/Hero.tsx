@@ -148,10 +148,10 @@ export default function Hero() {
         {/* Slogan con efecto de escritura */}
         <div className={styles.sloganContainer}>
           <h1 className={styles.mainSlogan} ref={sloganRef}>
-            Donde la imaginación se une a la innovación
+            Indie con alma de Titán
           </h1>
           <p className={styles.subSlogan}>
-            Creando experiencias de juego inolvidables
+            
           </p>
         </div>
 

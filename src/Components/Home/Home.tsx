@@ -11,7 +11,7 @@ function Home() {
   return (
     <div>
       <Hero />
-      <DivLine logoSrc={"/Icon.png"} />
+     
       <HomeInfo />
       <Banner
         backgroundImage={
