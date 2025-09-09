@@ -1,270 +1,154 @@
-/* MG3D.module.css - Gaming Skins Gallery */
 .container {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding: 4rem 2rem;
-  overflow-x: hidden;
 }
 
 .galleryTitle {
   text-align: center;
-  font-family: "Orbitron", sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 3rem;
-  text-shadow: 0 0 20px rgba(47, 128, 237, 0.4);
-  position: relative;
-  padding-bottom: 1rem;
+  font-size: 2.5rem;
+  color: #ff6b35;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.galleryTitle::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, #ff6b35, #2f80ed);
-  border-radius: 2px;
+.gallerySubtitle {
+  text-align: center;
+  color: #e0e0e0;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
 }
 
 .cardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  padding: 1.5rem;
-  position: relative;
-  z-index: 2;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-.modelCard {
-  position: relative;
-  height: 380px;
-  background: rgba(18, 22, 45, 0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
+.skinCard {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 1px solid rgba(47, 128, 237, 0.3);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
-.modelCard.blurred {
-  filter: blur(4px);
-  opacity: 0.6;
-  transform: scale(0.98);
-}
-
-.cardContent {
+  transition: all 0.3s ease;
   position: relative;
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skinCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(255, 107, 53, 0.25);
+  border-color: rgba(255, 107, 53, 0.4);
+}
+
+.skinImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #252525, #1c1c1c);
+}
+
+.skinPlaceholder {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 50%;
+  border: 2px dashed #ff6b35;
+}
+
+.skinIcon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+}
+
+/* CAMBIÉ el nombre de esta clase para evitar conflicto */
+.cardImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
-.modelCard canvas {
-  width: 100% !important;
-  height: 70% !important;
+.skinCard:hover .cardImageOverlay {
+  opacity: 0.8;
+}
+
+.rarityBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rarityBadge[data-rarity="Común"] {
+  background: #5a6268;
+  color: white;
+}
+
+.rarityBadge[data-rarity="Poco común"] {
+  background: #007bff;
+  color: white;
+}
+
+.rarityBadge[data-rarity="Rara"] {
+  background: #6f42c1;
+  color: white;
+}
+
+.rarityBadge[data-rarity="Épica"] {
+  background: #e83e8c;
+  color: white;
+}
+
+.rarityBadge[data-rarity="Legendaria"] {
+  background: #fd7e14;
+  color: white;
+}
+
+.rarityBadge[data-rarity="Mítica"] {
+  background: linear-gradient(45deg, #ff6b35, #ffcc00);
+  color: white;
 }
 
 .skinInfo {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: 1.5rem;
-  background: linear-gradient(transparent 0%, rgba(10, 12, 28, 0.9) 100%);
-  backdrop-filter: blur(10px);
-}
-
-.skinName {
-  color: #ffffff;
-  font-family: "Orbitron", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(255, 107, 53, 0.7);
-}
-
-.skinDescription {
-  color: #cbd0f7;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
-.rarityIndicator {
-  display: inline-block;
-  padding: 0.3rem 0.8rem;
-  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.rarityText {
-  color: #ffffff;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.cardHoverEffect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 107, 53, 0.2) 0%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-.modelCard:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(47, 128, 237, 0.25);
-  border-color: rgba(47, 128, 237, 0.5);
-}
-
-.modelCard:hover .cardHoverEffect {
-  opacity: 1;
-}
-
-/* Modal Overlay */
-.modelOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(15px);
-  z-index: 20;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.modelOverlay.closing {
-  opacity: 0;
-}
-
-/* Vista Expandida */
-.expandedView {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  width: 90vw;
-  height: 85vh;
-  background: rgba(18, 22, 45, 0.95);
-  backdrop-filter: blur(25px);
-  border-radius: 20px;
-  border: 1px solid rgba(47, 128, 237, 0.4);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  z-index: 30;
-  display: flex;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.expandedView.closing {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.9);
-}
-
-.expandedContent {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-.modelContainer {
-  flex: 1;
-  position: relative;
-}
-
-.modelContainer canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.detailsPanel {
-  width: 350px;
-  padding: 2.5rem;
-  background: rgba(10, 12, 28, 0.8);
-  backdrop-filter: blur(15px);
-  border-left: 1px solid rgba(47, 128, 237, 0.3);
-  display: flex;
-  flex-direction: column;
 }
 
 .skinTitle {
-  color: #ffffff;
-  font-family: "Orbitron", sans-serif;
-  font-size: 2rem;
+  color: #ff6b35;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-.skinFullDescription {
-  color: #cbd0f7;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+.skinDescription {
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-.skinStats {
-  margin-bottom: 2rem;
-}
-
-.stat {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(47, 128, 237, 0.2);
-}
-
-.statLabel {
-  color: #cbd0f7;
-  font-weight: 500;
-}
-
-.statValue {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.equipButton {
-  position: relative;
-  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
-  color: white;
-  border: none;
-  padding: 1.2rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  margin-top: auto;
-}
-
-.buttonGlow {
+.skinHoverEffect {
   position: absolute;
   top: 0;
   left: -100%;
@@ -273,142 +157,236 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 107, 53, 0.1),
     transparent
   );
-  transition: all 0.6s ease;
+  transition: left 0.5s ease;
+  pointer-events: none;
 }
 
-.equipButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(47, 128, 237, 0.4);
-}
-
-.equipButton:hover .buttonGlow {
+.skinCard:hover .skinHoverEffect {
   left: 100%;
+}
+
+/* Vista expandida - ESTA es la clase correcta para el overlay del modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expandedView {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  border-radius: 15px;
+  overflow: hidden;
+  z-index: 1001;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid #ff6b35;
+  animation: modalAppear 0.3s ease;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.expandedContent {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.expandedImageContainer {
+  position: relative;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #252525, #1c1c1c);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.expandedPlaceholder {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 107, 53, 0.15);
+  border-radius: 50%;
+  border: 3px dashed #ff6b35;
+}
+
+.expandedIcon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.7));
+}
+
+.expandedImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  border-radius: 10px;
+}
+
+.expandedRarity {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.expandedDetails {
+  color: #e0e0e0;
+}
+
+.expandedTitle {
+  color: #ff6b35;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.expandedDescription {
+  color: #b0b0b0;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.skinStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  background: rgba(255, 107, 53, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.statLabel {
+  display: block;
+  color: #ff6b35;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.statValue {
+  display: block;
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+.purchaseButton {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(45deg, #ff6b35, #ff9800);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.purchaseButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
 }
 
 .closeButton {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: linear-gradient(135deg, #ff6b35 0%, #2f80ed 100%);
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 107, 53, 0.9);
   color: white;
   border: none;
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1002;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .closeButton:hover {
+  background: #ff6b35;
   transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(47, 128, 237, 0.5);
 }
 
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #cbd0f7;
-  font-size: 1.1rem;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .expandedView {
-    flex-direction: column;
-    width: 95vw;
-    height: 90vh;
-  }
-
-  .detailsPanel {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid rgba(47, 128, 237, 0.3);
-    max-height: 40%;
-  }
-
-  .modelContainer {
-    height: 60%;
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
+  .cardsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .expandedContent {
+    padding: 1.5rem;
+  }
+
+  .skinStats {
+    grid-template-columns: 1fr;
+  }
+
+  .expandedView {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
   .container {
     padding: 2rem 1rem;
   }
 
   .galleryTitle {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .cardsGrid {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
 
-  .modelCard {
-    height: 320px;
-  }
-
-  .expandedView {
-    width: 98vw;
-    height: 95vh;
-    border-radius: 15px;
-  }
-
-  .detailsPanel {
-    padding: 1.5rem;
-  }
-
-  .skinTitle {
-    font-size: 1.6rem;
-  }
-
-  .closeButton {
-    width: 45px;
-    height: 45px;
-    font-size: 1.5rem;
-    top: 1rem;
-    right: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .galleryTitle {
-    font-size: 1.8rem;
-  }
-
-  .skinInfo {
-    padding: 1rem;
-  }
-
-  .skinName {
-    font-size: 1.1rem;
-  }
-
-  .skinDescription {
-    font-size: 0.8rem;
-  }
-
-  .detailsPanel {
-    padding: 1rem;
-  }
-
-  .skinTitle {
-    font-size: 1.4rem;
-  }
-
-  .skinFullDescription {
-    font-size: 1rem;
+  .expandedImageContainer {
+    height: 200px;
   }
 }
