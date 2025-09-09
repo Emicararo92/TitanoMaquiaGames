@@ -23,11 +23,12 @@
 
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
-
 body {
   background: url("https://res.cloudinary.com/deek9levs/image/upload/v1757427253/Web_sabana_1920_otg8os.png")
     no-repeat top center;
