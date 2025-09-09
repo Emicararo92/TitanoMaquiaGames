@@ -11,6 +11,7 @@ interface CardData {
   altText: string;
   shortDesc: string;
   longDesc: string;
+  isNew?: boolean;
 }
 
 const firstSectionCards: CardData[] = [
@@ -31,6 +32,7 @@ const firstSectionCards: CardData[] = [
     shortDesc: "Héroes únicos",
     longDesc:
       "Descubre héroes con habilidades especiales y estilos de combate únicos.",
+    isNew: true, // Esta card tendrá el indicador de novedad
   },
   {
     id: 3,
@@ -40,15 +42,6 @@ const firstSectionCards: CardData[] = [
     shortDesc: "Exploración libre",
     longDesc:
       "Explora vastos mundos abiertos con misiones y secretos escondidos.",
-  },
-  {
-    id: 4,
-    imgSrc:
-      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019640/b_ci6cky.jpg",
-    altText: "Interfaz de usuario del juego",
-    shortDesc: "Interfaz intuitiva",
-    longDesc:
-      "Disfruta de una interfaz diseñada para facilitar tu experiencia de juego.",
   },
 ];
 
@@ -63,6 +56,14 @@ const secondSectionData = [
   },
   {
     id: 2,
+    imgSrc:
+      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019642/h_f8iob9.jpg",
+    altText: "Personajes colaborando en equipo",
+    title: "Juego cooperativo",
+    text: "Únete a tus amigos y disfruta de modos cooperativos para lograr objetivos juntos.",
+  },
+  {
+    id: 3,
     imgSrc:
       "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019642/h_f8iob9.jpg",
     altText: "Personajes colaborando en equipo",
@@ -123,16 +124,20 @@ export default function HomeInfo() {
     <div className={styles.homeInfoContainer}>
       {/* Fondo animado con canvas */}
 
-      {/* Sección 1: 4 cards */}
-      <div className={styles.sectionTitle}>
-        <h2>Somos Titano Maquia Games</h2>
-        <div className={styles.titleUnderline}></div>
-      </div>
+      {/* Sección 1: 3 cards */}
 
-      <div className={styles.gridFour}>
+      <div className={styles.gridThree}>
         {firstSectionCards.map(
-          ({ id, imgSrc, altText, shortDesc, longDesc }) => (
-            <div key={id} className={styles.card}>
+          ({ id, imgSrc, altText, shortDesc, longDesc, isNew }) => (
+            <div
+              key={id}
+              className={`${styles.card} ${isNew ? styles.newCard : ""}`}
+            >
+              {isNew && (
+                <div className={styles.newBadge}>
+                  <span>Próximamente</span>
+                </div>
+              )}
               <div className={styles.cardInner}>
                 <div className={styles.cardImageContainer}>
                   <Image
@@ -161,10 +166,6 @@ export default function HomeInfo() {
       </div>
 
       {/* Sección 2: grid 2x2 imagen|texto - texto|imagen */}
-      <div className={styles.sectionTitle}>
-        <h2>Novedades</h2>
-        <div className={styles.titleUnderline}></div>
-      </div>
 
       <div className={styles.gridTwo}>
         <div className={styles.featuredItem}>
@@ -172,6 +173,24 @@ export default function HomeInfo() {
             <Image
               src={secondSectionData[0].imgSrc}
               alt={secondSectionData[0].altText}
+              width={400}
+              height={250}
+              className={styles.featuredImage}
+            />
+            <div className={styles.imageHoverEffect}></div>
+          </div>
+          <div className={styles.textContent}>
+            <h3>{secondSectionData[0].title}</h3>
+            <p>{secondSectionData[0].text}</p>
+            <div className={styles.textGlow}></div>
+          </div>
+        </div>
+
+        <div className={styles.featuredItem}>
+          <div className={styles.imageContainer}>
+            <Image
+              src={secondSectionData[2].imgSrc}
+              alt={secondSectionData[2].altText}
               width={400}
               height={250}
               className={styles.featuredImage}
@@ -242,6 +261,11 @@ export default function HomeInfo() {
           </div>
         </div>
       )}
+      <div className={styles.container}>
+        <h2 id="INF" className={styles.title}>
+          INFINITE PATHWAYS
+        </h2>
+      </div>
     </div>
   );
 }

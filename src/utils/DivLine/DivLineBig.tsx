@@ -1,24 +1,28 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+
 import styles from "../../Styles/DivLine.module.css";
 
-interface BannerDivisorProps {
-  logoSrc: string;
-  altText?: string;
-  slogan?: string;
-}
-
-export default function DivLine({
-  logoSrc,
-  altText = "Logo",
-  slogan,
-}: BannerDivisorProps) {
+export default function NewsBanner() {
   return (
-    <div className={styles.divisor}>
-      <div className={styles.logoContainer}>
-        <Image src={logoSrc} alt={altText} width={40} height={40} />
+    <div className={styles.bannerContainer}>
+      <div className={styles.ticker}>
+        <div className={styles.tickerContent}>
+          <span className={styles.tickerItem}>
+            🎮 ¡SE VIENE INFINITE PATWAYS! 🎮
+          </span>
+          <span className={styles.tickerItem}>
+            🔥 STEAM NOS DA LA BIENVENIDA 🔥
+          </span>
+          <span className={styles.tickerItem}>⭐ ACTUALIZACIONES 2025 ⭐</span>
+          <span className={styles.tickerItem}>🎮 MODOS DE JUEGO 🎮</span>
+          <span className={styles.tickerItem}>
+            🔥 TODO LO QUE SE VIENE EN TITANOMAQUIA 🔥
+          </span>
+          <span className={styles.tickerItem}>
+            ⭐ CONOCENOS - VISITA NUESTRAS REDES ⭐
+          </span>
+        </div>
       </div>
-      {slogan && <h2 className={styles.slogan}>{slogan}</h2>}
     </div>
   );
 }

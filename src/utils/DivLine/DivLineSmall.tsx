@@ -1,14 +1,14 @@
-import React from "react";
-import styles from "../../Styles/DivLineSmall.module.css";
+// components/InfPat/SkillsShowcase.tsx
+"use client";
 
-interface CategoryDividerProps {
-  label?: string;
-}
+import styles from "../../../Styles/DivLineSmall.module.css";
 
-export default function DivLineSmall({ label }: CategoryDividerProps) {
+export default function SkillsShowcase() {
   return (
-    <div className={styles.divider}>
-      {label && <span className={styles.label}>{label}</span>}
+    <div className={styles.container}>
+      <h2 id="INF" className={styles.title}>
+        ¿Cómo lo hicimos?
+      </h2>
     </div>
   );
 }

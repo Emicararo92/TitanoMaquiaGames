@@ -23,43 +23,16 @@
 
 html,
 body {
-  width: 100vw; /* asegura que no se salga horizontalmente */
-  overflow-x: hidden; /* bloquea scroll lateral */
-}
-
-body {
-  background: rgba(224, 128, 19, 0.475);
-  color: var(--foreground);
-  font-family: var(--font-handlee), Arial, Helvetica, sans-serif;
-}
-
-/* Asegurar que el html y body ocupen toda la altura */
-html,
-body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Mejoras para el fondo fijo en móviles */
-@media (max-width: 768px) {
-  .fixedBackground {
-    background-attachment: scroll !important;
-  }
-}
-
-/* Opcional: mejorar el rendimiento con transform */
-.fixedBackground {
-  transform: translateZ(0);
-}
-
-/* Asegurar que el contenido principal tenga posición relativa */
-.main-content {
-  position: relative;
-}
-
-@media screen and (max-width: 768px) {
-  .mainContent {
-    padding-top: 90px;
-  }
+body {
+  background: url("https://res.cloudinary.com/deek9levs/image/upload/v1757427253/Web_sabana_1920_otg8os.png")
+    no-repeat top center;
+  background-size: cover; /* ocupa todo el ancho/alto, aunque corte un poco */
+  background-attachment: scroll; /* el fondo se mueve con el scroll */
+  color: var(--foreground);
+  font-family: var(--font-handlee), Arial, Helvetica, sans-serif;
 }

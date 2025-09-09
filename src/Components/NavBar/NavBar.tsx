@@ -75,8 +75,8 @@ export default function Navbar() {
 
       // Fondo con gradiente sutil
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-      gradient.addColorStop(0, "rgba(15, 15, 35, 0.95)");
-      gradient.addColorStop(1, "rgba(25, 25, 50, 0.95)");
+      gradient.addColorStop(0, "rgba(255, 183, 77, 0.95)"); // naranja claro
+      gradient.addColorStop(1, "rgba(255, 140, 0, 0.95)"); // naranja más intenso
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
