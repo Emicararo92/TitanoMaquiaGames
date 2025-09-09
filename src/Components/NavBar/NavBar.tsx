@@ -32,8 +32,8 @@ export default function Navbar() {
 
     // Ajustar tamaño del canvas
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
 
     resizeCanvas();
@@ -75,8 +75,8 @@ export default function Navbar() {
 
       // Fondo con gradiente sutil
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-      gradient.addColorStop(0, "rgba(255, 183, 77, 0.95)"); // naranja claro
-      gradient.addColorStop(1, "rgba(255, 140, 0, 0.95)"); // naranja más intenso
+      gradient.addColorStop(0, "#f6b365");
+      gradient.addColorStop(1, "#f6b365"); // mismo color para efecto plano
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
