@@ -32,8 +32,8 @@ export default function Navbar() {
 
     // Ajustar tamaño del canvas
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     };
 
     resizeCanvas();
@@ -74,11 +74,11 @@ export default function Navbar() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Fondo con gradiente sutil
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-      gradient.addColorStop(0, "#f6b365");
-      gradient.addColorStop(1, "#f6b365"); // mismo color para efecto plano
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        gradient.addColorStop(0, "rgba(15, 15, 35, 0.95)");
+        gradient.addColorStop(1, "rgba(25, 25, 50, 0.95)");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Actualizar y dibujar partículas
       for (let i = 0; i < particles.length; i++) {
