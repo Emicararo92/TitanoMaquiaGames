@@ -2,15 +2,19 @@
 .bannerContainer {
   width: 100%;
   overflow: hidden;
-
   border-radius: 8px;
   padding: 0.75rem 0;
-
   position: relative;
   margin: 1rem 0;
+
+  /* Fondo de imagen */
+  background-image: url("https://res.cloudinary.com/deek9levs/image/upload/v1757608227/Separador_Infinite_Path_1_axhchm.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* Efecto de brillo para estilo gaming */
+/* Brillo estilo gaming */
 .bannerContainer::before {
   content: "";
   position: absolute;
@@ -24,19 +28,23 @@
     rgba(255, 255, 255, 0.3) 50%,
     transparent 100%
   );
-  animation: shine 4s infinite;
+  animation: shine 4s linear infinite;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .ticker {
   width: 100%;
   overflow: hidden;
   position: relative;
+  z-index: 3; /* que quede por encima del fondo */
 }
 
 .tickerContent {
   display: inline-flex;
   white-space: nowrap;
   animation: tickerScroll 25s linear infinite;
+  will-change: transform;
 }
 
 .tickerItem {
@@ -44,39 +52,39 @@
   font-size: 1.1rem;
   font-weight: 600;
   color: white;
-  margin-top: 1.5rem;
+  margin: 0 2rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-  padding: 0 2rem;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
-/* Animación de desplazamiento constante */
+/* Animación de desplazamiento más fluida */
 @keyframes tickerScroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-/* Efecto de brillo */
+/* Brillo animado */
 @keyframes shine {
   0% {
-    left: -100%;
+    left: -50%;
   }
   100% {
-    left: 200%;
+    left: 150%;
   }
 }
 
-/* Pausar animación al hacer hover para mejor legibilidad */
+/* Pausa al hover para legibilidad */
 .tickerContent:hover {
   animation-play-state: paused;
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
   .bannerContainer {
     padding: 0.6rem 0;
@@ -85,7 +93,7 @@
 
   .tickerItem {
     font-size: 0.95rem;
-    padding: 0 1.5rem;
+    margin: 0 1.5rem;
   }
 
   .tickerContent {
@@ -96,7 +104,7 @@
 @media (max-width: 480px) {
   .tickerItem {
     font-size: 0.85rem;
-    padding: 0 1rem;
+    margin: 0 1rem;
   }
 
   .tickerContent {
