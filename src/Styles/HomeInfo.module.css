@@ -26,13 +26,30 @@
   margin: 2rem 0;
 }
 
-/* Grid de 2 columnas */
+/* Grid escalera para sección 2 */
+/* Grid escalera vertical */
 .gridTwo {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   margin: 3rem 0;
   margin-bottom: 3rem;
+}
+
+/* Anchos decrecientes */
+.gridTwo .featuredItem:nth-child(1) {
+  width: 100%; /* más grande */
+  margin: 0 auto;
+}
+
+.gridTwo .featuredItem:nth-child(2) {
+  width: 80%; /* mediano */
+  margin: 0 auto;
+}
+
+.gridTwo .featuredItem:nth-child(3) {
+  width: 60%; /* más chico */
+  margin: 0 auto;
 }
 
 /* Cards */
@@ -442,6 +459,10 @@
 
   .featuredItem:nth-child(even) {
     direction: ltr;
+  }
+
+  .gridTwo .featuredItem {
+    grid-column: auto;
   }
 }
 

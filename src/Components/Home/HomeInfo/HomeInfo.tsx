@@ -203,22 +203,21 @@ export default function HomeInfo() {
             <div className={styles.textGlow}></div>
           </div>
         </div>
-
         <div className={styles.featuredItem}>
-          <div className={styles.textContent}>
-            <h3>{secondSectionData[1].title}</h3>
-            <p>{secondSectionData[1].text}</p>
-            <div className={styles.textGlow}></div>
-          </div>
           <div className={styles.imageContainer}>
             <Image
-              src={secondSectionData[1].imgSrc}
-              alt={secondSectionData[1].altText}
+              src={secondSectionData[0].imgSrc}
+              alt={secondSectionData[0].altText}
               width={400}
               height={250}
               className={styles.featuredImage}
             />
             <div className={styles.imageHoverEffect}></div>
+          </div>
+          <div className={styles.textContent}>
+            <h3>{secondSectionData[0].title}</h3>
+            <p>{secondSectionData[0].text}</p>
+            <div className={styles.textGlow}></div>
           </div>
         </div>
       </div>

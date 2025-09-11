@@ -70,7 +70,19 @@ export default function GameMenuTabs({
 
   return (
     <>
-      {/* Banner full width */}
+      {/* Banner superior como imagen */}
+      <div className={styles.topBanner}>
+        <Image
+          src="https://res.cloudinary.com/deek9levs/image/upload/v1757608227/Separador_Infinite_Path_1_axhchm.png"
+          alt="Infinite Pathways"
+          fill
+          className={styles.topBannerImage}
+          priority
+        />
+        <div className={styles.topBannerText}>INFINITE PATHWAYS</div>
+      </div>
+
+      {/* Banner principal */}
       <div className={styles.banner}>
         <Image
           src="https://res.cloudinary.com/deek9levs/image/upload/v1757608229/Imagen_Infinite_zhotzl.png"

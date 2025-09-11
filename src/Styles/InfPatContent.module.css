@@ -373,3 +373,35 @@
     height: 200px;
   }
 }
+/* Banner superior full width */
+.topBanner {
+  width: 100%;
+  height: 120px; /* altura menor que el banner principal */
+  position: relative;
+}
+
+.topBannerImage {
+  object-fit: cover;
+  filter: brightness(1.05); /* más brillante */
+  transition: transform 0.5s ease;
+}
+
+.topBannerImage:hover {
+  transform: scale(1.02);
+}
+
+/* Texto sobre la imagen */
+.topBannerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ff6b35; /* estilo gamer naranja */
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  font-family: "Press Start 2P", sans-serif; /* tipografía estilo videojuego */
+  pointer-events: none; /* para que no interfiera con el hover */
+}
