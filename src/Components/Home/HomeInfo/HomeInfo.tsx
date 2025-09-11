@@ -261,11 +261,6 @@ export default function HomeInfo() {
           </div>
         </div>
       )}
-      <div className={styles.container}>
-        <h2 id="INF" className={styles.title}>
-          INFINITE PATHWAYS
-        </h2>
-      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import styles from "../../../Styles/InfPatContent.module.css"; // Nuevo archivo CSS
+import styles from "../../../Styles/InfPatContent.module.css";
 
 interface MenuItem {
   id: number;
@@ -52,7 +52,6 @@ export default function GameMenuTabs({
     },
   ];
 
-  // Efecto para el cambio automático de items
   useEffect(() => {
     if (!autoScroll) return;
 
@@ -63,88 +62,101 @@ export default function GameMenuTabs({
     return () => clearInterval(interval);
   }, [autoScroll, menuItems.length]);
 
-  // Manejar clic en item del menú
   const handleItemClick = (itemId: number) => {
     setActiveItem(itemId);
     setAutoScroll(false);
-
-    // Reanudar auto-scroll después de 10 segundos
     setTimeout(() => setAutoScroll(true), 10000);
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.menuPanel}>
-        <div className={styles.menuHeader}>
-          <h3>Características</h3>
-          <div className={styles.headerUnderline}></div>
-        </div>
+    <>
+      {/* Banner full width */}
+      <div className={styles.banner}>
+        <Image
+          src="https://res.cloudinary.com/deek9levs/image/upload/v1757608229/Imagen_Infinite_zhotzl.png"
+          alt="Banner del juego"
+          fill
+          className={styles.bannerImage}
+          priority
+        />
+      </div>
 
-        <div className={styles.menuItems}>
-          {menuItems.map((item) => (
-            <div
-              key={item.id}
-              className={`${styles.menuItem} ${
-                activeItem === item.id ? styles.active : ""
-              }`}
-              onClick={() => handleItemClick(item.id)}
-            >
-              <div className={styles.menuItemContent}>
-                <span className={styles.menuItemText}>{item.title}</span>
-                <div className={styles.menuItemIndicator}>
-                  <div className={styles.indicatorDot}></div>
+      {/* Contenedor principal */}
+      <div className={styles.container}>
+        {/* Panel izquierdo */}
+        <div className={styles.menuPanel}>
+          <div className={styles.menuHeader}>
+            <h3>Características</h3>
+            <div className={styles.headerUnderline}></div>
+          </div>
+
+          <div className={styles.menuItems}>
+            {menuItems.map((item) => (
+              <div
+                key={item.id}
+                className={`${styles.menuItem} ${
+                  activeItem === item.id ? styles.active : ""
+                }`}
+                onClick={() => handleItemClick(item.id)}
+              >
+                <div className={styles.menuItemContent}>
+                  <span className={styles.menuItemText}>{item.title}</span>
+                  <div className={styles.menuItemIndicator}>
+                    <div className={styles.indicatorDot}></div>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+
+          <div className={styles.menuFooter}>
+            <div className={styles.scrollIndicator}>
+              <div className={styles.scrollText}>Auto Scroll</div>
+              <div
+                className={`${styles.scrollToggle} ${
+                  autoScroll ? styles.active : ""
+                }`}
+              >
+                <div className={styles.toggleKnob}></div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
 
-        <div className={styles.menuFooter}>
-          <div className={styles.scrollIndicator}>
-            <div className={styles.scrollText}>Auto Scroll</div>
-            <div
-              className={`${styles.scrollToggle} ${
-                autoScroll ? styles.active : ""
-              }`}
-            >
-              <div className={styles.toggleKnob}></div>
+        {/* Panel derecho */}
+        <div className={styles.contentPanel}>
+          <div className={styles.contentDisplay}>
+            <div className={styles.imageContainer}>
+              <Image
+                src={
+                  menuItems.find((item) => item.id === activeItem)?.image || ""
+                }
+                alt={
+                  menuItems.find((item) => item.id === activeItem)?.title || ""
+                }
+                fill
+                className={styles.contentImage}
+                priority
+              />
+              <div className={styles.imageOverlay}></div>
+              <div className={styles.cornerDecoration}></div>
+            </div>
+
+            <div className={styles.textContainer}>
+              <h2 className={styles.contentTitle}>
+                {menuItems.find((item) => item.id === activeItem)?.title}
+              </h2>
+              <p className={styles.contentDescription}>
+                {menuItems.find((item) => item.id === activeItem)?.desc}
+              </p>
+            </div>
+
+            <div className={styles.navigationHint}>
+              <span>Selecciona una opción para ver más detalles</span>
             </div>
           </div>
         </div>
       </div>
-
-      <div className={styles.contentPanel}>
-        <div className={styles.contentDisplay}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={
-                menuItems.find((item) => item.id === activeItem)?.image || ""
-              }
-              alt={
-                menuItems.find((item) => item.id === activeItem)?.title || ""
-              }
-              fill
-              className={styles.contentImage}
-              priority
-            />
-            <div className={styles.imageOverlay}></div>
-            <div className={styles.cornerDecoration}></div>
-          </div>
-
-          <div className={styles.textContainer}>
-            <h2 className={styles.contentTitle}>
-              {menuItems.find((item) => item.id === activeItem)?.title}
-            </h2>
-            <p className={styles.contentDescription}>
-              {menuItems.find((item) => item.id === activeItem)?.desc}
-            </p>
-          </div>
-
-          <div className={styles.navigationHint}>
-            <span>Selecciona una opción para ver más detalles</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }

@@ -1,13 +1,45 @@
+/* Contenedor principal */
 .container {
   display: flex;
   width: 100%;
   max-width: 1200px;
-  margin: 57rem auto 8rem;
+  margin: 2rem auto 4rem;
   background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   min-height: 500px;
+  flex-wrap: wrap;
+}
+
+/* 🔹 Banner full width estilo hero */
+.banner {
+  width: 100vw; /* toda la pantalla */
+  height: 500px;
+  position: relative;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.bannerImage {
+  object-fit: cover;
+  filter: brightness(1.9) contrast(1.1);
+  transition: transform 0.8s ease;
+}
+
+.banner:hover .bannerImage {
+  transform: scale(1.05);
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.8)
+  );
 }
 
 /* Panel lateral izquierdo */
@@ -77,6 +109,7 @@
 .menuItemText {
   color: #e0e0e0;
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .menuItemIndicator {
@@ -166,14 +199,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23333333' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
+  background: url("data:image/svg+xml,...") repeat,
     linear-gradient(to bottom, #252525, #1c1c1c);
 }
 
 .contentDisplay {
   width: 100%;
   max-width: 600px;
-  background: rgba(30, 30, 30, 0.8);
+  background: rgba(30, 30, 30, 0.85);
   border: 2px solid #ff6b35;
   border-radius: 8px;
   overflow: hidden;
@@ -297,6 +330,14 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+
+  .banner {
+    height: 300px;
+  }
+
+  .bannerImage {
+    height: 300px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -322,5 +363,13 @@
 
   .contentDescription {
     font-size: 1rem;
+  }
+
+  .banner {
+    height: 200px;
+  }
+
+  .bannerImage {
+    height: 200px;
   }
 }
