@@ -1,62 +1,99 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import styles from "../../../../Styles/MG3D.module.css";
+import type { GLTF } from "three-stdlib";
+import * as THREE from "three";
 
-// Reemplazamos las rutas de modelos 3D con imágenes estáticas
+// Datos de las skins
 const skinImages = [
-  "/cubeA.glb", // Reemplazar con rutas reales de imágenes
+  "/cubeA.glb",
   "/cubeB.glb",
   "/cubeC.glb",
   "/cubeD.glb",
   "/cubeE.glb",
   "/cubeF.glb",
-].map((_, index) => ({
-  id: index + 1,
-  image: `https://res.cloudinary.com/dcn7oqg4l/image/upload/v175501964${index}/skin-${
-    index + 1
-  }.jpg`, // URLs de ejemplo
-  title: `Skin ${index + 1}`,
-  description: `Descripción exclusiva de la skin ${
-    index + 1
-  } con detalles especiales.`,
-  rarity: ["Común", "Poco común", "Rara", "Épica", "Legendaria", "Mítica"][
-    index % 6
-  ],
-}));
+].map((path, index) => {
+  useGLTF.preload(path);
+  return {
+    id: index + 1,
+    modelPath: path,
+    title: `Skin ${index + 1}`,
+    description: `Descripción exclusiva de la skin ${
+      index + 1
+    } con detalles especiales.`,
+    rarity: ["Común", "Poco común", "Rara", "Épica", "Legendaria", "Mítica"][
+      index % 6
+    ],
+  };
+});
+
+// Cubo 3D con rotación y animación de escala
+function Cube({
+  modelPath,
+  scale = 1,
+  rotationSpeed = 0.01,
+  isSelected = false,
+}: {
+  modelPath: string;
+  scale?: number;
+  rotationSpeed?: number;
+  isSelected?: boolean;
+}) {
+  const gltf = useGLTF(modelPath) as GLTF;
+  const ref = useRef<THREE.Object3D>(null!);
+  const targetScale = isSelected ? scale * 1.8 : scale;
+
+  useFrame(() => {
+    if (ref.current) {
+      ref.current.rotation.y += rotationSpeed;
+      ref.current.rotation.x += rotationSpeed / 2;
+
+      // Animación de scale suave
+      ref.current.scale.lerp(
+        new THREE.Vector3(targetScale, targetScale, targetScale),
+        0.1
+      );
+    }
+  });
+
+  return <primitive ref={ref} object={gltf.scene} />;
+}
 
 export default function ModelGallery3D() {
   const [selectedSkin, setSelectedSkin] = useState<number | null>(null);
 
   return (
     <div className={styles.container}>
-      {/* Título de la sección */}
       <h2 className={styles.galleryTitle}>Nuestras Skins</h2>
       <p className={styles.gallerySubtitle}>
         Descubre nuestras skins exclusivas con efectos únicos
       </p>
 
-      {selectedSkin !== null && (
-        <div
-          className={styles.skinOverlay}
-          onClick={() => setSelectedSkin(null)}
-        />
-      )}
-
       <div className={styles.cardsGrid}>
-        {skinImages.map((skin, index) => (
+        {skinImages.map((skin) => (
           <div
             key={skin.id}
             className={styles.skinCard}
-            onClick={() => setSelectedSkin(skin.id)}
+            onClick={() =>
+              setSelectedSkin(selectedSkin === skin.id ? null : skin.id)
+            }
           >
             <div className={styles.skinImageContainer}>
-              <div className={styles.skinPlaceholder}>
-                <div className={styles.skinIcon}>🎮</div>
-              </div>
-              <div className={styles.skinOverlay}></div>
+              <Canvas style={{ width: "100%", height: "300px" }}>
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[5, 5, 5]} />
+                <Cube
+                  modelPath={skin.modelPath}
+                  scale={2}
+                  rotationSpeed={0.02}
+                  isSelected={selectedSkin === skin.id}
+                />
+                <OrbitControls enableZoom={true} />
+              </Canvas>
               <div className={styles.rarityBadge} data-rarity={skin.rarity}>
                 {skin.rarity}
               </div>
@@ -69,58 +106,6 @@ export default function ModelGallery3D() {
           </div>
         ))}
       </div>
-
-      {selectedSkin !== null && (
-        <div className={styles.expandedView}>
-          <div className={styles.expandedContent}>
-            <div className={styles.expandedImageContainer}>
-              <div className={styles.expandedPlaceholder}>
-                <div className={styles.expandedIcon}>🎮</div>
-              </div>
-              <div className={styles.expandedOverlay}></div>
-              <div
-                className={styles.expandedRarity}
-                data-rarity={skinImages[selectedSkin - 1].rarity}
-              >
-                {skinImages[selectedSkin - 1].rarity}
-              </div>
-            </div>
-
-            <div className={styles.expandedDetails}>
-              <h2 className={styles.expandedTitle}>
-                {skinImages[selectedSkin - 1].title}
-              </h2>
-              <p className={styles.expandedDescription}>
-                {skinImages[selectedSkin - 1].description}
-              </p>
-
-              <div className={styles.skinStats}>
-                <div className={styles.stat}>
-                  <span className={styles.statLabel}>Disponibilidad:</span>
-                  <span className={styles.statValue}>Limitada</span>
-                </div>
-                <div className={styles.stat}>
-                  <span className={styles.statLabel}>Efectos:</span>
-                  <span className={styles.statValue}>Partículas únicas</span>
-                </div>
-                <div className={styles.stat}>
-                  <span className={styles.statLabel}>Precio:</span>
-                  <span className={styles.statValue}>1.200 créditos</span>
-                </div>
-              </div>
-
-              <button className={styles.purchaseButton}>Adquirir Skin</button>
-            </div>
-          </div>
-
-          <button
-            className={styles.closeButton}
-            onClick={() => setSelectedSkin(null)}
-          >
-            ×
-          </button>
-        </div>
-      )}
     </div>
   );
 }
