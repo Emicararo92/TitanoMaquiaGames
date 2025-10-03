@@ -1,0 +1,301 @@
+/* Contenedor principal */
+.contentGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem;
+  background-size: cover;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header descriptivo */
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  color: #ff6b35;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.underline {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b35, #ff9800);
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+}
+
+.subtitle {
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Contenedor de cards */
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Cards de proyectos */
+.card {
+  position: relative;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+  border-color: #ff6b35;
+}
+
+/* Contenedor de imagen */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 18px 18px 0 0;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .imageOverlay {
+  opacity: 0.8;
+}
+
+/* Contenido de la card */
+.cardContent {
+  padding: 1.5rem;
+}
+
+.cardTitle {
+  text-align: center;
+  color: #ff6b35;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  padding: 0.8rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.1),
+    rgba(255, 107, 53, 0.05)
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.cardDescription {
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.cardMeta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.metaTag {
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+/* Efectos de hover mejorados */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 107, 53, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* 🔹 Banner superior - EXACTAMENTE IGUAL al ejemplo */
+.topBanner {
+  width: 100%;
+  height: 120px;
+  position: relative;
+}
+
+.topBannerImage {
+  object-fit: cover;
+  filter: brightness(1.05);
+  transition: transform 0.5s ease;
+}
+
+.topBannerImage:hover {
+  transform: scale(1.02);
+}
+
+.topBannerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ff6b35;
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  font-family: "Press Start 2P", sans-serif;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cardsContainer {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .contentGrid {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .contentGrid {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .card {
+    padding: 0;
+  }
+
+  .imageContainer {
+    height: 200px;
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
+
+  .cardContent {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentGrid {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .cardsContainer {
+    gap: 1.5rem;
+  }
+
+  .card {
+    border-radius: 15px;
+  }
+
+  .imageContainer {
+    height: 180px;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .cardTitle {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+  }
+
+  .cardContent {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .topBannerText {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease;
+}

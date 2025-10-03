@@ -18,6 +18,10 @@
   color: #e0e0e0;
   margin-bottom: 3rem;
   font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cardsGrid {
@@ -38,10 +42,21 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Card especial para la skin 6 */
+.specialCard {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .skinCard:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 25px rgba(255, 107, 53, 0.25);
   border-color: rgba(255, 107, 53, 0.4);
+}
+
+.specialCard:hover {
+  box-shadow: 0 12px 25px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .skinImageContainer {
@@ -90,6 +105,7 @@
   opacity: 0.8;
 }
 
+/* Badges de rareza actualizados */
 .rarityBadge {
   position: absolute;
   top: 10px;
@@ -99,36 +115,19 @@
   font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
+  z-index: 2;
 }
 
-.rarityBadge[data-rarity="Común"] {
-  background: #5a6268;
+.rarityBadge[data-rarity="Iniciales"] {
+  background: #28a745;
   color: white;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
 }
 
-.rarityBadge[data-rarity="Poco común"] {
-  background: #007bff;
-  color: white;
-}
-
-.rarityBadge[data-rarity="Rara"] {
-  background: #6f42c1;
-  color: white;
-}
-
-.rarityBadge[data-rarity="Épica"] {
-  background: #e83e8c;
-  color: white;
-}
-
-.rarityBadge[data-rarity="Legendaria"] {
-  background: #fd7e14;
-  color: white;
-}
-
-.rarityBadge[data-rarity="Mítica"] {
+.rarityBadge[data-rarity="Intenta desbloquearlo"] {
   background: linear-gradient(45deg, #ff6b35, #ffcc00);
   color: white;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
 }
 
 .skinInfo {
@@ -142,10 +141,25 @@
   font-weight: 700;
 }
 
+/* Estilos especiales para la skin 6 */
+.specialTitle {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 .skinDescription {
   color: #b0b0b0;
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.specialDescription {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .skinHoverEffect {
@@ -166,6 +180,16 @@
 
 .skinCard:hover .skinHoverEffect {
   left: 100%;
+}
+
+/* Efecto hover especial para la skin 6 */
+.specialCard .skinHoverEffect {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 /* Vista expandida - ESTA es la clase correcta para el overlay del modal */
@@ -388,5 +412,10 @@
 
   .expandedImageContainer {
     height: 200px;
+  }
+
+  .gallerySubtitle {
+    font-size: 1rem;
+    padding: 0 0.5rem;
   }
 }
