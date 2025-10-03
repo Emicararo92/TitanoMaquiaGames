@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState, useRef } from "react";
-import styles from "../../../Styles/Devs.module.css";
+import styles from "../../Styles/Devs.module.css";
 import Image from "next/image";
 
 interface VideoItem {
@@ -109,7 +108,7 @@ export default function Devs() {
   return (
     <>
       {/* 🔹 Banner divisor arriba del grid */}
-      <div className={styles.topBanner}>
+      <div id="NOS" className={styles.topBanner}>
         <Image
           src="https://res.cloudinary.com/deek9levs/image/upload/v1757608227/Separador_Infinite_Path_1_axhchm.png"
           alt="Infinite Pathways"

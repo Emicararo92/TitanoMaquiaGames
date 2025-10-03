@@ -54,7 +54,7 @@ export default function Navbar() {
               <span>Infinity Pathways</span>
               <div className={styles.linkHoverEffect}></div>
             </Link>
-            <Link href="#Nosotros" className={styles.link}>
+            <Link href="#NOS" className={styles.link}>
               <Users size={18} className={styles.linkIcon} />
               <span>Nosotros</span>
               <div className={styles.linkHoverEffect}></div>
