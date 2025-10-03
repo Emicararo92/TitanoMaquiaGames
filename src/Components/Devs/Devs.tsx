@@ -108,7 +108,7 @@ export default function Devs() {
   return (
     <>
       {/* 🔹 Banner divisor arriba del grid */}
-      <div id="NOS" className={styles.topBanner}>
+      <div className={styles.topBanner}>
         <Image
           src="https://res.cloudinary.com/deek9levs/image/upload/v1757608227/Separador_Infinite_Path_1_axhchm.png"
           alt="Infinite Pathways"
@@ -119,18 +119,36 @@ export default function Devs() {
         <div className={styles.topBannerText}>NUESTRO EQUIPO</div>
       </div>
 
-      <div className={styles.videosGrid}>
-        {videos.map((item) => (
-          <div
-            key={item.id}
-            className={styles.card}
-            onMouseEnter={() => handleMouseEnter(item.id)}
-            onMouseLeave={() => handleMouseLeave(item.id)}
-            onClick={() => handleClick(item.id)}
-          >
-            <div className={styles.videoWrapper}>
-              {/* Thumbnail inicial: puede ser la primera frame del video */}
-              {!item.thumbnail && (
+      {/* 🔹 SECCIÓN PRINCIPAL con ID "NOS" */}
+      <section id="NOS" className={styles.teamSection}>
+        <div className={styles.videosGrid}>
+          {videos.map((item) => (
+            <div
+              key={item.id}
+              className={styles.card}
+              onMouseEnter={() => handleMouseEnter(item.id)}
+              onMouseLeave={() => handleMouseLeave(item.id)}
+              onClick={() => handleClick(item.id)}
+            >
+              <div className={styles.videoWrapper}>
+                {/* Thumbnail inicial: puede ser la primera frame del video */}
+                {!item.thumbnail && (
+                  <video
+                    ref={(el) => {
+                      videoRefs.current[item.id] = el;
+                    }}
+                    src={item.video}
+                    className={`${styles.video} ${
+                      activeVideo === item.id ? styles.visible : ""
+                    }`}
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                  />
+                )}
+
+                {/* Video principal */}
                 <video
                   ref={(el) => {
                     videoRefs.current[item.id] = el;
@@ -144,33 +162,18 @@ export default function Devs() {
                   playsInline
                   preload="auto"
                 />
-              )}
-
-              {/* Video principal */}
-              <video
-                ref={(el) => {
-                  videoRefs.current[item.id] = el;
-                }}
-                src={item.video}
-                className={`${styles.video} ${
-                  activeVideo === item.id ? styles.visible : ""
-                }`}
-                muted
-                loop
-                playsInline
-                preload="auto"
-              />
+              </div>
+              <p className={styles.title}>{item.title}</p>
+              <div className={styles.description}>
+                <p>
+                  <strong>Tipo:</strong> {item.type}
+                </p>
+                <p>{item.description}</p>
+              </div>
             </div>
-            <p className={styles.title}>{item.title}</p>
-            <div className={styles.description}>
-              <p>
-                <strong>Tipo:</strong> {item.type}
-              </p>
-              <p>{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

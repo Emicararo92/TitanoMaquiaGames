@@ -123,7 +123,7 @@ export default function GameMenuTabs({
         {/* Panel izquierdo */}
         <div className={styles.menuPanel}>
           <div className={styles.menuHeader}>
-            <h3>Que es Infinite PathWays</h3>
+            <h3 id="INF">Que es Infinite PathWays</h3>
             <div className={styles.headerUnderline}></div>
           </div>
 

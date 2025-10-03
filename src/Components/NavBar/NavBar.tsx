@@ -24,13 +24,50 @@ export default function Navbar() {
   const toggleMobileMenu = () => setMobileOpen(!mobileOpen);
   const closeMobileMenu = () => setMobileOpen(false);
 
+  // Función para scroll suave a una sección
+  const scrollToSection = (sectionId: string) => {
+    console.log("Buscando elemento con ID:", sectionId); // Debug
+    const element = document.getElementById(sectionId);
+    console.log("Elemento encontrado:", element); // Debug
+
+    if (element) {
+      const offsetTop =
+        element.getBoundingClientRect().top + window.pageYOffset - 80;
+      console.log("Haciendo scroll a:", offsetTop); // Debug
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+    } else {
+      console.log("❌ Elemento NO encontrado con ID:", sectionId); // Debug
+    }
+    closeMobileMenu();
+  };
+
+  // Manejar clicks en los links
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+  };
+
   return (
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
         <div className={styles.container}>
           {/* Logo */}
           <div className={styles.logo}>
-            <Link href="/" onClick={closeMobileMenu}>
+            <Link
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                closeMobileMenu();
+              }}
+              className={styles.logoLink}
+            >
               <Image
                 src="/Icon.png"
                 alt="Logo Empresa"
@@ -44,26 +81,42 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className={styles.links}>
-            <Link href="#home" className={styles.link}>
+            <a
+              href="#home"
+              className={styles.link}
+              onClick={(e) => handleLinkClick(e, "home")}
+            >
               <Home size={18} className={styles.linkIcon} />
               <span>Home</span>
               <div className={styles.linkHoverEffect}></div>
-            </Link>
-            <Link href="#INF" className={styles.link}>
+            </a>
+            <a
+              href="#INF"
+              className={styles.link}
+              onClick={(e) => handleLinkClick(e, "INF")}
+            >
               <Gamepad2 size={18} className={styles.linkIcon} />
               <span>Infinity Pathways</span>
               <div className={styles.linkHoverEffect}></div>
-            </Link>
-            <Link href="#NOS" className={styles.link}>
+            </a>
+            <a
+              href="#NOS"
+              className={styles.link}
+              onClick={(e) => handleLinkClick(e, "NOS")}
+            >
               <Users size={18} className={styles.linkIcon} />
               <span>Nosotros</span>
               <div className={styles.linkHoverEffect}></div>
-            </Link>
-            <Link href="#contact" className={styles.link}>
+            </a>
+            <a
+              href="#contact"
+              className={styles.link}
+              onClick={(e) => handleLinkClick(e, "contact")}
+            >
               <Mail size={18} className={styles.linkIcon} />
               <span>Contacto</span>
               <div className={styles.linkHoverEffect}></div>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -97,42 +150,42 @@ export default function Navbar() {
           className={`${styles.mobileMenu} ${mobileOpen ? styles.open : ""}`}
         >
           <div className={styles.mobileMenuContent}>
-            <Link
+            <a
               href="#home"
               className={styles.mobileLink}
-              onClick={closeMobileMenu}
+              onClick={(e) => handleLinkClick(e, "home")}
             >
               <Home size={20} />
               <span>Home</span>
               <div className={styles.mobileLinkBg}></div>
-            </Link>
-            <Link
+            </a>
+            <a
               href="#INF"
               className={styles.mobileLink}
-              onClick={closeMobileMenu}
+              onClick={(e) => handleLinkClick(e, "INF")}
             >
               <Gamepad2 size={20} />
               <span>Infinity Pathways</span>
               <div className={styles.mobileLinkBg}></div>
-            </Link>
-            <Link
-              href="#Nosotros"
+            </a>
+            <a
+              href="#NOS"
               className={styles.mobileLink}
-              onClick={closeMobileMenu}
+              onClick={(e) => handleLinkClick(e, "NOS")}
             >
               <Users size={20} />
               <span>Nosotros</span>
               <div className={styles.mobileLinkBg}></div>
-            </Link>
-            <Link
+            </a>
+            <a
               href="#contact"
               className={styles.mobileLink}
-              onClick={closeMobileMenu}
+              onClick={(e) => handleLinkClick(e, "contact")}
             >
               <Mail size={20} />
               <span>Contacto</span>
               <div className={styles.mobileLinkBg}></div>
-            </Link>
+            </a>
           </div>
         </div>
       </nav>
