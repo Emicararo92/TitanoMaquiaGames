@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import styles from "../../../Styles/HomeInfo.module.css";
 
 interface CardData {
@@ -33,7 +32,7 @@ const firstSectionCards: CardData[] = [
     shortDesc: "Héroes únicos",
     longDesc:
       "Descubre héroes con habilidades especiales y estilos de combate únicos.",
-    isNew: true, // Esta card tendrá el indicador de novedad
+    isNew: true,
   },
   {
     id: 3,
@@ -77,7 +76,6 @@ export default function HomeInfo() {
   const [activeModalId, setActiveModalId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const router = useRouter();
 
   // Efecto para controlar el scroll del body cuando el modal está abierto
   useEffect(() => {
@@ -99,13 +97,12 @@ export default function HomeInfo() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    // Pequeño delay para permitir la animación de salida
     setTimeout(() => setActiveModalId(null), 300);
   };
 
-  // Función para navegar a página nueva
-  const navigateToNewsPage = (id: number) => {
-    router.push(`/News/${id}`);
+  // Función para abrir en pestaña nueva
+  const openInNewTab = (id: number) => {
+    window.open(`/News/${id}`, "_blank", "noopener,noreferrer");
   };
 
   // Cerrar modal con ESC
@@ -127,8 +124,6 @@ export default function HomeInfo() {
 
   return (
     <div className={styles.homeInfoContainer}>
-      {/* Fondo animado con canvas */}
-
       {/* Sección 1: 3 cards */}
       <div className={styles.gridThree}>
         {firstSectionCards.map(
@@ -155,10 +150,10 @@ export default function HomeInfo() {
                 </div>
                 <p className={styles.shortDesc}>{shortDesc}</p>
 
-                {/* Botón que abre página nueva */}
+                {/* Botón que abre en pestaña nueva */}
                 <button
                   className={styles.toggleBtn}
-                  onClick={() => navigateToNewsPage(id)}
+                  onClick={() => openInNewTab(id)}
                   aria-label={`Ver más sobre ${shortDesc}`}
                 >
                   <span>Ver más</span>

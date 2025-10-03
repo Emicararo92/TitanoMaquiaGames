@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Gamepad2, Home, Users, Mail, Menu, X, Sparkles } from "lucide-react";
 import styles from "../../Styles/NavBar.module.css";
 import Image from "next/image";
@@ -10,6 +11,7 @@ import Image from "next/image";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname(); // Para detectar en qué página estamos
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,20 +28,20 @@ export default function Navbar() {
 
   // Función para scroll suave a una sección
   const scrollToSection = (sectionId: string) => {
-    console.log("Buscando elemento con ID:", sectionId); // Debug
+    console.log("Buscando elemento con ID:", sectionId);
     const element = document.getElementById(sectionId);
-    console.log("Elemento encontrado:", element); // Debug
+    console.log("Elemento encontrado:", element);
 
     if (element) {
       const offsetTop =
         element.getBoundingClientRect().top + window.pageYOffset - 80;
-      console.log("Haciendo scroll a:", offsetTop); // Debug
+      console.log("Haciendo scroll a:", offsetTop);
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
       });
     } else {
-      console.log("❌ Elemento NO encontrado con ID:", sectionId); // Debug
+      console.log("❌ Elemento NO encontrado con ID:", sectionId);
     }
     closeMobileMenu();
   };
@@ -53,6 +55,21 @@ export default function Navbar() {
     scrollToSection(sectionId);
   };
 
+  // Manejar click en el logo
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Si estamos en una página de noticias (/news/[id]), navegar a home
+    if (pathname?.startsWith("/news/")) {
+      e.preventDefault();
+      window.location.href = "/"; // Navegación completa a home
+      closeMobileMenu();
+    } else {
+      // Si estamos en home, hacer scroll al top
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      closeMobileMenu();
+    }
+  };
+
   return (
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
@@ -61,11 +78,7 @@ export default function Navbar() {
           <div className={styles.logo}>
             <Link
               href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                closeMobileMenu();
-              }}
+              onClick={handleLogoClick}
               className={styles.logoLink}
             >
               <Image

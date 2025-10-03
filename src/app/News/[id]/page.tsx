@@ -118,13 +118,7 @@ export default function NewsDetail() {
         <article className={styles.newsArticle}>
           {/* Header de la noticia */}
           <header className={styles.newsHeader}>
-            <div className={styles.metaInfo}>
-              <span className={styles.category}>{newsItem.category}</span>
-              <span className={styles.date}>{newsItem.date}</span>
-              {newsItem.isNew && <span className={styles.newBadge}>NUEVO</span>}
-            </div>
-
-            <h1 className={styles.newsTitle}>{newsItem.title}</h1>
+            <h1 className={`${styles.newsTitle} mt-10`}>{newsItem.title}</h1>
             <p className={styles.newsExcerpt}>{newsItem.shortDesc}</p>
 
             <div className={styles.authorInfo}>
