@@ -7,9 +7,7 @@ export default function Hero() {
   return (
     <section className={styles.hero} id="home">
       <div className={styles.centerText}>
-        Somos un estudio indie argentino, <br /> que hace video juegos, un
-        equipo lleno de conviccion <br /> que cree en los resultados del
-        esfuerzo
+      Somos un estudio de videojuegos argentino <br/>Somos un equipo lleno de conviccion que cree en los resultados del esfuerzo y superarse dia a dia
       </div>
     </section>
   );

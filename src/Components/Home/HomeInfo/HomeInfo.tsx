@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import styles from "../../../Styles/HomeInfo.module.css";
 
 interface CardData {
@@ -76,8 +77,7 @@ export default function HomeInfo() {
   const [activeModalId, setActiveModalId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  // Efecto para el fondo de partículas
+  const router = useRouter();
 
   // Efecto para controlar el scroll del body cuando el modal está abierto
   useEffect(() => {
@@ -103,6 +103,11 @@ export default function HomeInfo() {
     setTimeout(() => setActiveModalId(null), 300);
   };
 
+  // Función para navegar a página nueva
+  const navigateToNewsPage = (id: number) => {
+    router.push(`/News/${id}`);
+  };
+
   // Cerrar modal con ESC
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
@@ -125,7 +130,6 @@ export default function HomeInfo() {
       {/* Fondo animado con canvas */}
 
       {/* Sección 1: 3 cards */}
-
       <div className={styles.gridThree}>
         {firstSectionCards.map(
           ({ id, imgSrc, altText, shortDesc, longDesc, isNew }) => (
@@ -150,14 +154,17 @@ export default function HomeInfo() {
                   <div className={styles.cardOverlay}></div>
                 </div>
                 <p className={styles.shortDesc}>{shortDesc}</p>
+
+                {/* Botón que abre página nueva */}
                 <button
                   className={styles.toggleBtn}
-                  onClick={() => openModal(id)}
+                  onClick={() => navigateToNewsPage(id)}
                   aria-label={`Ver más sobre ${shortDesc}`}
                 >
                   <span>Ver más</span>
                   <div className={styles.buttonHoverEffect}></div>
                 </button>
+
                 <div className={styles.cardGlow}></div>
               </div>
             </div>
@@ -166,7 +173,6 @@ export default function HomeInfo() {
       </div>
 
       {/* Sección 2: grid 2x2 imagen|texto - texto|imagen */}
-
       <div className={styles.gridTwo}>
         <div className={styles.featuredItem}>
           <div className={styles.imageContainer}>
@@ -222,7 +228,7 @@ export default function HomeInfo() {
         </div>
       </div>
 
-      {/* Modal - Renderizado condicional mejorado */}
+      {/* Modal - Mantiene la funcionalidad original */}
       {isModalOpen && activeModalId && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div
