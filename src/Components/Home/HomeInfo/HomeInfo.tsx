@@ -100,12 +100,12 @@ export default function HomeInfo() {
     setTimeout(() => setActiveModalId(null), 300);
   };
 
-  // Función para abrir en pestaña nueva
+ 
   const openInNewTab = (id: number) => {
     window.open(`/News/${id}`, "_blank", "noopener,noreferrer");
   };
 
-  // Cerrar modal con ESC
+  
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
