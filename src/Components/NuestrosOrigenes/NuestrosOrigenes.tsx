@@ -33,10 +33,35 @@ export default function OurOrigins() {
         {/* Cards de proyectos */}
         <div className={styles.cardsContainer}>
           {/* Primer proyecto - Neon Nebula */}
+
+          {/* Segundo proyecto */}
           <div className={styles.card}>
             <div className={styles.imageContainer}>
               <Image
-                src="https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019641/e_ygor7y.jpg"
+                src="https://res.cloudinary.com/deek9levs/image/upload/v1761599850/Neon_Nebula_derecha_ns0ojq.jpg"
+                alt="Proyecto de desarrollo"
+                fill
+                className={styles.image}
+              />
+              <div className={styles.imageOverlay}></div>
+            </div>
+
+            <div className={styles.cardContent}>
+              <h3 className={styles.cardTitle}>Neon Nebula</h3>
+              <p className={styles.cardDescription}>
+                Este es el primer juego que se hizo como equipo, <br />{" "}
+                conformando nuestra marca y ahora es nuestro pequeño gran
+                orgullo.
+              </p>
+              <div className={styles.cardMeta}>
+                <span className={styles.metaTag}>El Principio</span>
+              </div>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.imageContainer}>
+              <Image
+                src="https://res.cloudinary.com/deek9levs/image/upload/v1761599851/Sin_nombre_izquierda_acmmi3.png"
                 alt="Neon Nebula - Nuestro primer juego"
                 fill
                 className={styles.image}
@@ -46,41 +71,15 @@ export default function OurOrigins() {
             </div>
 
             <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Neon Nebula</h3>
+              <h3 className={styles.cardTitle}>Las Raices</h3>
               <p className={styles.cardDescription}>
-                nuestro primer juego que subimos a internet con el simple
-                <br />
-                objetivo de aprender
+                Este es el primer juego que se hizo <br /> como parte de un
+                proyecto en CoderHouse
               </p>
               <div className={styles.cardMeta}>
                 <span className={styles.metaTag}>
                   Proyecto final de CoderHouse
                 </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Segundo proyecto */}
-          <div className={styles.card}>
-            <div className={styles.imageContainer}>
-              <Image
-                src="https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019640/a_sz5zjf.jpg"
-                alt="Proyecto de desarrollo"
-                fill
-                className={styles.image}
-              />
-              <div className={styles.imageOverlay}></div>
-            </div>
-
-            <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Próximamente</h3>
-              <p className={styles.cardDescription}>
-                Seguimos creando y aprendiendo
-                <br />
-                nuevos proyectos en desarrollo
-              </p>
-              <div className={styles.cardMeta}>
-                <span className={styles.metaTag}>En progreso</span>
               </div>
             </div>
           </div>
