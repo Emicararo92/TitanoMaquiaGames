@@ -7,27 +7,53 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.social}>
-          <a target="blank" href="https://www.youtube.com/@TitanomaquiaGames" aria-label="YouTube">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/@TitanomaquiaGames"
+            aria-label="YouTube"
+          >
             <Youtube className={styles.icon} />
           </a>
-          <a href="https://www.linkedin.com/company/titanomaquiagames" aria-label="LinkedIn">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/company/titanomaquiagames"
+            aria-label="LinkedIn"
+          >
             <Linkedin className={styles.icon} />
           </a>
-          <a href="https://www.instagram.com/titanomaquiagames/" aria-label="Instagram">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.instagram.com/titanomaquiagames/"
+            aria-label="Instagram"
+          >
             <Instagram className={styles.icon} />
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://linktr.ee/titanomaquiagames" // sin link aún
+            aria-label="Linktree"
+          >
+            <Sword className={styles.icon} />
           </a>
         </div>
 
         <div className={styles.legal}>
           <p>© TitanoMaquiaGames. Todos los derechos reservados.</p>
           <div className={styles.legalLinks}>
-            <a href="#">Términos</a>
-            <a href="#">Privacidad</a>
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              Términos
+            </a>
+            <a target="_blank" rel="noopener noreferrer" href="#">
+              Privacidad
+            </a>
           </div>
         </div>
 
         <div className={styles.gameCredits}>
-          <Sword className={styles.icon} />
           <p>Infinity Pathways</p>
         </div>
       </div>
