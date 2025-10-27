@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TitanoMaquiaGames",
+  title: "TitanomaquiaGames",
   description: "Desarrolladora de videojuegos",
 };
 
