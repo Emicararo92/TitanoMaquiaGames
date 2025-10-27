@@ -11,10 +11,10 @@ export default function NewsBanner() {
             🎮 ¡SE VIENE INFINITE PATWAYS! 🎮
           </span>
           <span className={styles.tickerItem}>
-            🔥 STEAM NOS DA LA BIENVENIDA 🔥
+            🔥 Ya estamos en Steam 🔥
           </span>
-          <span className={styles.tickerItem}>⭐ ACTUALIZACIONES 2025 ⭐</span>
-          <span className={styles.tickerItem}>🎮 MODOS DE JUEGO 🎮</span>
+          <span className={styles.tickerItem}>⭐ Nos vemos en la Eva ⭐</span>
+          <span className={styles.tickerItem}>🎮 ¡¡Vienen Novedades!! 🎮</span>
           <span className={styles.tickerItem}>
             🔥 TODO LO QUE SE VIENE EN TITANOMAQUIA 🔥
           </span>

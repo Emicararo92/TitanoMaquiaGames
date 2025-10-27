@@ -18,21 +18,21 @@ const firstSectionCards: CardData[] = [
   {
     id: 1,
     imgSrc:
-      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019641/e_ygor7y.jpg",
-    altText: "Escena épica de batalla en juego",
-    shortDesc: "Batallas épicas",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1761599540/eva-2025-black-500x500-1_axilzp.png",
+    altText: "Nuestro Paso por la Eva",
+    shortDesc: "Nuestro Paso por la Eva",
     longDesc:
       "Vive intensas batallas llenas de acción y estrategia en cada partida.",
   },
   {
     id: 2,
     imgSrc:
-      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019641/c_wu8zp5.jpg",
-    altText: "Personaje principal en acción",
-    shortDesc: "Héroes únicos",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1761599540/argencon_expocon_110625-1024x576_lt095e.jpg",
+    altText: "Nuestro Paso por la Expocon 2025",
+    shortDesc: "Nuestro Paso por la Expocon 2025",
     longDesc:
       "Descubre héroes con habilidades especiales y estilos de combate únicos.",
-    isNew: true,
+    isNew: false,
   },
   {
     id: 3,
@@ -42,6 +42,7 @@ const firstSectionCards: CardData[] = [
     shortDesc: "Exploración libre",
     longDesc:
       "Explora vastos mundos abiertos con misiones y secretos escondidos.",
+    isNew: true,
   },
 ];
 
@@ -49,42 +50,36 @@ const secondSectionData = [
   {
     id: 1,
     imgSrc:
-      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019644/k_opm6js.jpg",
-    altText: "Captura de una misión especial",
-    title: "Misiones especiales",
-    text: "Participa en misiones especiales que desafían tus habilidades y recompensan tu progreso.",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1761585767/A_eva2025_or4z78.png",
+    altText: "Camino a la EVA 2025",
+    title: "Camino a la EVA 2025",
+    text: "Vamos a ir con prácticamente todo el equipo del 5 a 8 de noviembre, no dudes en pasar a saludar",
   },
   {
     id: 2,
     imgSrc:
-      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019642/h_f8iob9.jpg",
-    altText: "Personajes colaborando en equipo",
-    title: "Juego cooperativo",
-    text: "Únete a tus amigos y disfruta de modos cooperativos para lograr objetivos juntos.",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1761585767/C_Proximamente_rbtkei.png",
+    altText: "Ya estamos en Steam",
+    title: "Ya estamos en Steam",
+    text: "En nada vamos a subir el link para que puedas ver nuestro juego, y vamos a estar en muchos otros lugares",
   },
   {
     id: 3,
     imgSrc:
-      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019642/h_f8iob9.jpg",
-    altText: "Personajes colaborando en equipo",
-    title: "Juego cooperativo",
-    text: "Únete a tus amigos y disfruta de modos cooperativos para lograr objetivos juntos.",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1761585767/B_Mr.Maskoto_h3apt6.png",
+    altText: "Ya tenemos una mascota",
+    title: "Ya tenemos una mascota",
+    text: "Ningún estudio que se precie puede existir sin una mascota, y la nuestra en un ataque de originalidad extrema, le llamamos Mr. Maskoto",
   },
 ];
 
 export default function HomeInfo() {
   const [activeModalId, setActiveModalId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Efecto para controlar el scroll del body cuando el modal está abierto
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
+    document.body.style.overflow = isModalOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -100,26 +95,17 @@ export default function HomeInfo() {
     setTimeout(() => setActiveModalId(null), 300);
   };
 
- 
   const openInNewTab = (id: number) => {
     window.open(`/News/${id}`, "_blank", "noopener,noreferrer");
   };
 
-  
+  // Cerrar modal con ESC
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeModal();
-      }
+      if (event.key === "Escape") closeModal();
     };
-
-    if (isModalOpen) {
-      window.addEventListener("keydown", handleEsc);
-    }
-
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-    };
+    if (isModalOpen) window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
   }, [isModalOpen]);
 
   return (
@@ -150,7 +136,6 @@ export default function HomeInfo() {
                 </div>
                 <p className={styles.shortDesc}>{shortDesc}</p>
 
-                {/* Botón que abre en pestaña nueva */}
                 <button
                   className={styles.toggleBtn}
                   onClick={() => openInNewTab(id)}
@@ -167,63 +152,30 @@ export default function HomeInfo() {
         )}
       </div>
 
-      {/* Sección 2: grid 2x2 imagen|texto - texto|imagen */}
+      {/* Sección 2: map dinámico para evitar repetir imágenes y textos */}
       <div className={styles.gridTwo}>
-        <div className={styles.featuredItem}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={secondSectionData[0].imgSrc}
-              alt={secondSectionData[0].altText}
-              width={400}
-              height={250}
-              className={styles.featuredImage}
-            />
-            <div className={styles.imageHoverEffect}></div>
+        {secondSectionData.map(({ id, imgSrc, altText, title, text }) => (
+          <div key={id} className={styles.featuredItem}>
+            <div className={styles.imageContainer}>
+              <Image
+                src={imgSrc}
+                alt={altText}
+                width={400}
+                height={250}
+                className={styles.featuredImage}
+              />
+              <div className={styles.imageHoverEffect}></div>
+            </div>
+            <div className={styles.textContent}>
+              <h3>{title}</h3>
+              <p>{text}</p>
+              <div className={styles.textGlow}></div>
+            </div>
           </div>
-          <div className={styles.textContent}>
-            <h3>{secondSectionData[0].title}</h3>
-            <p>{secondSectionData[0].text}</p>
-            <div className={styles.textGlow}></div>
-          </div>
-        </div>
-
-        <div className={styles.featuredItem}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={secondSectionData[2].imgSrc}
-              alt={secondSectionData[2].altText}
-              width={400}
-              height={250}
-              className={styles.featuredImage}
-            />
-            <div className={styles.imageHoverEffect}></div>
-          </div>
-          <div className={styles.textContent}>
-            <h3>{secondSectionData[0].title}</h3>
-            <p>{secondSectionData[0].text}</p>
-            <div className={styles.textGlow}></div>
-          </div>
-        </div>
-        <div className={styles.featuredItem}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={secondSectionData[0].imgSrc}
-              alt={secondSectionData[0].altText}
-              width={400}
-              height={250}
-              className={styles.featuredImage}
-            />
-            <div className={styles.imageHoverEffect}></div>
-          </div>
-          <div className={styles.textContent}>
-            <h3>{secondSectionData[0].title}</h3>
-            <p>{secondSectionData[0].text}</p>
-            <div className={styles.textGlow}></div>
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* Modal - Mantiene la funcionalidad original */}
+      {/* Modal */}
       {isModalOpen && activeModalId && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div
