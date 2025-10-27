@@ -33,8 +33,6 @@ export default function OurOrigins() {
         {/* Cards de proyectos */}
         <div className={styles.cardsContainer}>
           {/* Primer proyecto - Neon Nebula */}
-
-          {/* Segundo proyecto */}
           <div className={styles.card}>
             <div className={styles.imageContainer}>
               <Image
@@ -54,10 +52,19 @@ export default function OurOrigins() {
                 orgullo.
               </p>
               <div className={styles.cardMeta}>
-                <span className={styles.metaTag}>El Principio</span>
+                <a
+                  href="https://titanomaquiagames.itch.io/neon-nebula"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.metaTag}
+                >
+                  El Principio
+                </a>
               </div>
             </div>
           </div>
+
+          {/* Segundo proyecto */}
           <div className={styles.card}>
             <div className={styles.imageContainer}>
               <Image

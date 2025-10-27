@@ -37,9 +37,9 @@ const firstSectionCards: CardData[] = [
   {
     id: 3,
     imgSrc:
-      "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019640/a_sz5zjf.jpg",
-    altText: "Mundo abierto del juego",
-    shortDesc: "Exploración libre",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1761605673/Vision-Norte--Tucuman-inaugurara-el-primer-mercado-audiovisual-del-NOA-con-impacto-economico-y-cultural_khvru8.jpg",
+    altText: "Vision Norte",
+    shortDesc: "Visión Norte",
     longDesc:
       "Explora vastos mundos abiertos con misiones y secretos escondidos.",
     isNew: true,

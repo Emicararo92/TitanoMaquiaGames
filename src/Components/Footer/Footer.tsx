@@ -10,8 +10,8 @@ export default function Footer() {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://www.youtube.com/@TitanomaquiaGames"
-            aria-label="YouTube"
+            href="https://titanomaquiagames.itch.io/neon-nebula"
+            aria-label="Neon Nebula en Itch.io"
           >
             <Youtube className={styles.icon} />
           </a>
@@ -34,7 +34,7 @@ export default function Footer() {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://linktr.ee/titanomaquiagames" // sin link aún
+            href="https://linktr.ee/titanomaquiagames"
             aria-label="Linktree"
           >
             <Sword className={styles.icon} />
