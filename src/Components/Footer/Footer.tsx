@@ -7,13 +7,13 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.social}>
-          <a href="#" aria-label="YouTube">
+          <a target="blank" href="https://www.youtube.com/@TitanomaquiaGames" aria-label="YouTube">
             <Youtube className={styles.icon} />
           </a>
-          <a href="#" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/titanomaquiagames" aria-label="LinkedIn">
             <Linkedin className={styles.icon} />
           </a>
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/titanomaquiagames/" aria-label="Instagram">
             <Instagram className={styles.icon} />
           </a>
         </div>
