@@ -26,7 +26,6 @@
   margin: 2rem 0;
 }
 
-/* Grid escalera para sección 2 */
 /* Grid escalera vertical */
 .gridTwo {
   display: flex;
@@ -38,17 +37,17 @@
 
 /* Anchos decrecientes */
 .gridTwo .featuredItem:nth-child(1) {
-  width: 100%; /* más grande */
+  width: 100%;
   margin: 0 auto;
 }
 
 .gridTwo .featuredItem:nth-child(2) {
-  width: 80%; /* mediano */
+  width: 80%;
   margin: 0 auto;
 }
 
 .gridTwo .featuredItem:nth-child(3) {
-  width: 60%; /* más chico */
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -121,7 +120,7 @@
   padding: 0 0.5rem;
 }
 
-/* Botón */
+/* Botón general */
 .toggleBtn {
   position: relative;
   display: block;
@@ -317,6 +316,51 @@
 
 .textContent:hover .textGlow {
   opacity: 1;
+}
+
+/* 🔶 BOTÓN STEAM 🔶 */
+.steamBtn {
+  position: relative;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.8rem;
+  background: linear-gradient(45deg, #ff6b35, #ff9800);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.steamBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: all 0.5s;
+  z-index: -1;
+}
+
+.steamBtn:hover::before {
+  left: 100%;
+}
+
+.steamBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
 }
 
 /* Modal */

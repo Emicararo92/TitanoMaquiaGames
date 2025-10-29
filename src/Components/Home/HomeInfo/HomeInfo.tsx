@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../../Styles/HomeInfo.module.css";
 
@@ -61,7 +61,8 @@ const secondSectionData = [
       "https://res.cloudinary.com/deek9levs/image/upload/v1761585767/C_Proximamente_rbtkei.png",
     altText: "Ya estamos en Steam",
     title: "Ya estamos en Steam",
-    text: "En nada vamos a subir el link para que puedas ver nuestro juego, y vamos a estar en muchos otros lugares",
+    text: "Ya estamos en Steam, puedes visitar nuestro juego en la plataforma:",
+    steamLink: "https://store.steampowered.com/app/4012540/Infinite_Pathways/",
   },
   {
     id: 3,
@@ -154,25 +155,37 @@ export default function HomeInfo() {
 
       {/* Sección 2: map dinámico para evitar repetir imágenes y textos */}
       <div className={styles.gridTwo}>
-        {secondSectionData.map(({ id, imgSrc, altText, title, text }) => (
-          <div key={id} className={styles.featuredItem}>
-            <div className={styles.imageContainer}>
-              <Image
-                src={imgSrc}
-                alt={altText}
-                width={400}
-                height={250}
-                className={styles.featuredImage}
-              />
-              <div className={styles.imageHoverEffect}></div>
+        {secondSectionData.map(
+          ({ id, imgSrc, altText, title, text, steamLink }) => (
+            <div key={id} className={styles.featuredItem}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src={imgSrc}
+                  alt={altText}
+                  width={400}
+                  height={250}
+                  className={styles.featuredImage}
+                />
+                <div className={styles.imageHoverEffect}></div>
+              </div>
+              <div className={styles.textContent}>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                {steamLink && (
+                  <button
+                    className={styles.steamBtn}
+                    onClick={() =>
+                      window.open(steamLink, "_blank", "noopener,noreferrer")
+                    }
+                  >
+                    Ver en Steam
+                  </button>
+                )}
+                <div className={styles.textGlow}></div>
+              </div>
             </div>
-            <div className={styles.textContent}>
-              <h3>{title}</h3>
-              <p>{text}</p>
-              <div className={styles.textGlow}></div>
-            </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
 
       {/* Modal */}
