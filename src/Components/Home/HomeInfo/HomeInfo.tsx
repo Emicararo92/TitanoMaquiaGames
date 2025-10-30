@@ -58,7 +58,7 @@ const secondSectionData = [
   {
     id: 2,
     imgSrc:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1761585767/C_Proximamente_rbtkei.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1761840569/IP_Steam_Noticia_tipo_A_xks4os.png",
     altText: "Ya estamos en Steam",
     title: "Ya estamos en Steam",
     text: "Ya estamos en Steam, puedes visitar nuestro juego en la plataforma:",
