@@ -18,20 +18,44 @@
   letter-spacing: 1px;
 }
 
-/* Grid de 4 columnas - Más estrechas */
-.gridFour {
+/* Grid de 3 columnas */
+.gridThree {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas en lugar de 3 */
-  gap: 1.5rem; /* Menor gap para más espacio */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   margin: 2rem 0;
 }
 
-/* Cards más altas y menos anchas */
+/* Grid escalera vertical */
+.gridTwo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 3rem 0;
+  margin-bottom: 3rem;
+}
+
+/* Anchos decrecientes */
+.gridTwo .featuredItem:nth-child(1) {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.gridTwo .featuredItem:nth-child(2) {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.gridTwo .featuredItem:nth-child(3) {
+  width: 60%;
+  margin: 0 auto;
+}
+
+/* Cards */
 .card {
   position: relative;
   perspective: 1000px;
-  height: 420px; /* Más alto (antes 320px) */
-  width: 100%;
+  height: 320px;
 }
 
 .cardInner {
@@ -50,11 +74,10 @@
   transform: rotateY(5deg) rotateX(5deg) scale(1.03);
 }
 
-/* Imagen más alta proporcionalmente */
 .cardImageContainer {
   position: relative;
   width: 100%;
-  height: 240px; /* Más alto (antes 180px) */
+  height: 180px;
   overflow: hidden;
 }
 
@@ -88,70 +111,13 @@
   opacity: 0.9;
 }
 
-/* Ajuste de texto para cards más altas */
-.cardContent {
-  padding: 1.2rem; /* Más padding vertical */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: calc(420px - 240px); /* Altura restante después de la imagen */
-}
-
 .shortDesc {
-  font-size: 1.1rem; /* Ligeramente más pequeño para más texto */
+  font-size: 1.2rem;
   font-weight: 600;
   color: #333;
   text-align: center;
-  margin: 0.5rem 0; /* Menor margen */
+  margin: 1rem 0;
   padding: 0 0.5rem;
-  line-height: 1.4; /* Mejor legibilidad */
-  flex-grow: 1;
-}
-
-/* Botón dentro de la card */
-.cardButton {
-  margin-top: auto; /* Empuja el botón hacia abajo */
-  padding: 0.5rem 1.2rem;
-  background: linear-gradient(45deg, #ff6b35, #ff9800);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 0.9rem;
-  text-align: center;
-  width: 100%;
-}
-
-.cardButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
-}
-
-/* Grid escalera vertical */
-.gridTwo {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 3rem 0;
-  margin-bottom: 3rem;
-}
-
-/* Anchos decrecientes */
-.gridTwo .featuredItem:nth-child(1) {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.gridTwo .featuredItem:nth-child(2) {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.gridTwo .featuredItem:nth-child(3) {
-  width: 60%;
-  margin: 0 auto;
 }
 
 /* Botón general */
@@ -525,26 +491,10 @@
   left: 100%;
 }
 
-/* RESPONSIVE PARA 4 CARDS */
-
-@media (max-width: 1200px) {
-  .gridFour {
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas grandes */
-    gap: 1.5rem;
-  }
-
-  .card {
-    height: 400px; /* Mantener altura */
-  }
-
-  .cardImageContainer {
-    height: 230px;
-  }
-}
-
+/* Responsive */
 @media (max-width: 1024px) {
-  .gridFour {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  .gridThree {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .featuredItem {
@@ -558,14 +508,6 @@
   .gridTwo .featuredItem {
     grid-column: auto;
   }
-
-  .card {
-    height: 380px; /* Ajustar altura para tablets */
-  }
-
-  .cardImageContainer {
-    height: 220px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -577,19 +519,12 @@
     font-size: 2rem;
   }
 
-  .gridFour {
-    grid-template-columns: 1fr; /* 1 columna en móviles */
-    gap: 1.5rem;
+  .gridThree {
+    grid-template-columns: 1fr;
   }
 
   .card {
-    height: 350px; /* Ajustar altura para móviles */
-    max-width: 350px; /* Limitar ancho máximo */
-    margin: 0 auto; /* Centrar en móviles */
-  }
-
-  .cardImageContainer {
-    height: 200px;
+    height: 300px;
   }
 
   .featuredItem {
@@ -618,21 +553,5 @@
   .newBadge {
     font-size: 0.7rem;
     padding: 0.4rem 0.8rem;
-  }
-
-  .card {
-    height: 320px; /* Altura final para móviles pequeños */
-  }
-
-  .cardImageContainer {
-    height: 180px; /* Imagen más pequeña */
-  }
-
-  .cardContent {
-    padding: 1rem;
-  }
-
-  .shortDesc {
-    font-size: 1rem;
   }
 }
