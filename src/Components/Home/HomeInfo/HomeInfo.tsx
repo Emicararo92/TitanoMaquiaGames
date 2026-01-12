@@ -18,30 +18,37 @@ const firstSectionCards: CardData[] = [
   {
     id: 1,
     imgSrc:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1761599540/eva-2025-black-500x500-1_axilzp.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1768223910/WhatsApp_Image_2026-01-07_at_17.32.17_jgkt0a.jpg",
     altText: "Nuestro Paso por la Eva",
     shortDesc: "Nuestro Paso por la Eva",
     longDesc:
-      "Vive intensas batallas llenas de acción y estrategia en cada partida.",
+      "Una idea que parecía lejana se convirtió en una experiencia transformadora. Más que un destino, fue un punto de inflexión.",
   },
   {
     id: 2,
     imgSrc:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1761599540/argencon_expocon_110625-1024x576_lt095e.jpg",
-    altText: "Nuestro Paso por la Expocon 2025",
-    shortDesc: "Nuestro Paso por la Expocon 2025",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1768223911/WhatsApp_Image_2026-01-07_at_17.33.38_yjaque.jpg",
+    altText: "Nuestro Paso por Ventana Sur",
+    shortDesc: "Ventana Sur – Palacio Libertad",
     longDesc:
-      "Descubre héroes con habilidades especiales y estilos de combate únicos.",
-    isNew: false,
+      "Exploramos ideas, probamos juegos y nos empapamos de innovación en uno de los encuentros más importantes de la industria.",
   },
   {
     id: 3,
     imgSrc:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1761605673/Vision-Norte--Tucuman-inaugurara-el-primer-mercado-audiovisual-del-NOA-con-impacto-economico-y-cultural_khvru8.jpg",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1768223910/WhatsApp_Image_2026-01-07_at_17.28.58_tdwevy.jpg",
     altText: "Vision Norte",
     shortDesc: "Visión Norte",
     longDesc:
-      "Explora vastos mundos abiertos con misiones y secretos escondidos.",
+      "Una experiencia que nos acercó al mundo del cine y al cruce entre lo audiovisual y los videojuegos.",
+  },
+  {
+    id: 4,
+    imgSrc: "https://res.cloudinary.com/deek9levs/image/upload/v1768223909/WhatsApp_Image_2026-01-07_at_17.27.12_jyurpw.jpg", // 👉 IMAGEN NOTICIA EXPOCON
+    altText: "Nuestro paso por Expocon",
+    shortDesc: "Expocon",
+    longDesc:
+      "Conectamos, compartimos y formamos parte de un espacio donde la industria se encuentra cara a cara.",
     isNew: true,
   },
 ];
@@ -78,7 +85,6 @@ export default function HomeInfo() {
   const [activeModalId, setActiveModalId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Efecto para controlar el scroll del body cuando el modal está abierto
   useEffect(() => {
     document.body.style.overflow = isModalOpen ? "hidden" : "unset";
     return () => {
@@ -100,7 +106,6 @@ export default function HomeInfo() {
     window.open(`/News/${id}`, "_blank", "noopener,noreferrer");
   };
 
-  // Cerrar modal con ESC
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") closeModal();
@@ -111,7 +116,6 @@ export default function HomeInfo() {
 
   return (
     <div className={styles.homeInfoContainer}>
-      {/* Sección 1: 3 cards */}
       <div className={styles.gridThree}>
         {firstSectionCards.map(
           ({ id, imgSrc, altText, shortDesc, longDesc, isNew }) => (
@@ -121,7 +125,7 @@ export default function HomeInfo() {
             >
               {isNew && (
                 <div className={styles.newBadge}>
-                  <span>Próximamente</span>
+                  <span>Nuevo</span>
                 </div>
               )}
               <div className={styles.cardInner}>
@@ -153,7 +157,6 @@ export default function HomeInfo() {
         )}
       </div>
 
-      {/* Sección 2: map dinámico para evitar repetir imágenes y textos */}
       <div className={styles.gridTwo}>
         {secondSectionData.map(
           ({ id, imgSrc, altText, title, text, steamLink }) => (
@@ -188,7 +191,6 @@ export default function HomeInfo() {
         )}
       </div>
 
-      {/* Modal */}
       {isModalOpen && activeModalId && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div
