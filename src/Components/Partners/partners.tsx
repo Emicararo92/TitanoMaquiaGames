@@ -18,6 +18,14 @@ export default function Partners() {
         <Image
           alt="imagen de nuestro partner"
           src={
+            "https://res.cloudinary.com/deek9levs/image/upload/v1770673487/Logo_Pi_Studio_slhdzq.png"
+          }
+          width={150}
+          height={150}
+        />
+        <Image
+          alt="imagen de nuestro partner"
+          src={
             "https://res.cloudinary.com/deek9levs/image/upload/v1770644659/Logo_G_DantoGames_uo8lzp.png"
           }
           width={150}
