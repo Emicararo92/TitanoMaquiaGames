@@ -74,7 +74,7 @@ const secondSectionData = [
   {
     id: 3,
     imgSrc:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1761585767/B_Mr.Maskoto_h3apt6.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770044636/Mr.Maskoto_high_def._h432u1.png",
     altText: "Ya tenemos una mascota",
     title: "Ya tenemos una mascota",
     text: "Ningún estudio que se precie puede existir sin una mascota, y la nuestra en un ataque de originalidad extrema, le llamamos Mr. Maskoto",
