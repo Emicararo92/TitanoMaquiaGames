@@ -32,8 +32,16 @@ body {
 body {
   background: url("https://res.cloudinary.com/deek9levs/image/upload/v1757607317/Sabana_Web_Corregida_1_ohvrfv.png")
     no-repeat top center;
-  background-size: cover; /* ocupa todo el ancho/alto, aunque corte un poco */
-  background-attachment: scroll; /* el fondo se mueve con el scroll */
+  background-size: cover; 
+  background-attachment: scroll;
   color: var(--foreground);
   font-family: var(--font-handlee), Arial, Helvetica, sans-serif;
+}
+@media (max-width: 768px) {
+  body {
+    background: url("https://res.cloudinary.com/deek9levs/image/upload/v1770643463/Movil_Web_Sabana_1_kynn5h.png")
+      no-repeat top center;
+    background-size: cover;
+    background-attachment: scroll;
+  }
 }
