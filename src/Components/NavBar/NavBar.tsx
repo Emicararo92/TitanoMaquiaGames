@@ -109,7 +109,7 @@ export default function Navbar() {
               onClick={(e) => handleLinkClick(e, "INF")}
             >
               <Gamepad2 size={18} className={styles.linkIcon} />
-              <span>Infinity Pathways</span>
+              <span>Infinite Pathways</span>
               <div className={styles.linkHoverEffect}></div>
             </a>
             <a
@@ -178,7 +178,7 @@ export default function Navbar() {
               onClick={(e) => handleLinkClick(e, "INF")}
             >
               <Gamepad2 size={20} />
-              <span>Infinity Pathways</span>
+              <span>Infinite Pathways</span>
               <div className={styles.mobileLinkBg}></div>
             </a>
             <a

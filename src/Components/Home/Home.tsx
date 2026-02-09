@@ -5,6 +5,7 @@ import ModelGallery3D from "../InfPat/Skins/ModelGallery3D/ModelGallery3D";
 import Devs from "../Devs/Devs";
 import CardsTabs from "../InfPat/InfPatContent/InfPatContent";
 import OurOrigins from "../NuestrosOrigenes/NuestrosOrigenes";
+import Partners from "../Partners/partners";
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
       <ModelGallery3D />
       <Devs />
       <OurOrigins />
+      <Partners />
     </div>
   );
 }

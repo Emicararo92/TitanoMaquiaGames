@@ -1,0 +1,49 @@
+.partners {
+  width: 100%;
+  padding: 50px 20px;
+  background: #11111193; /* contraste para logos grises */
+  text-align: center;
+}
+
+.title {
+  color: #ff6b35;
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  font-family: "Press Start 2P", sans-serif;
+  pointer-events: none;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.logos img {
+  max-height: 50px;
+  filter: grayscale(100%);
+  opacity: 0.9;
+  transition: 0.3s ease;
+}
+
+.logos img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .logos {
+    gap: 30px;
+  }
+
+  .logos img {
+    max-height: 40px;
+  }
+}

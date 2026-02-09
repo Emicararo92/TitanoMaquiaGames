@@ -299,6 +299,7 @@
 .topBannerText {
   position: absolute;
   top: 50%;
+  font-family: "Press Start 2P", sans-serif;  
   left: 50%;
   transform: translate(-50%, -50%);
   color: #ff6b35;
@@ -308,6 +309,7 @@
   letter-spacing: 2px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
   pointer-events: none;
+  
 }
 
 /* 🔥 MODAL MEJORADO - PROBLEMAS CORREGIDOS */

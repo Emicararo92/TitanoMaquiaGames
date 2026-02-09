@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.gameCredits}>
-          <p>Infinity Pathways</p>
+          <p>Infinite Pathways</p>
         </div>
       </div>
     </footer>

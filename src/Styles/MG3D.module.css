@@ -9,7 +9,9 @@
   text-align: center;
   font-size: 2.5rem;
   color: #ff6b35;
+  font-family: "Press Start 2P", sans-serif;
   margin-bottom: 0.5rem;
+  background-color: #0000007e;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
