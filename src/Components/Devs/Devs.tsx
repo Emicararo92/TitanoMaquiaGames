@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styles from "../../Styles/Devs.module.css";
 import Image from "next/image";
 
@@ -10,145 +10,191 @@ interface TeamMember {
   title: string;
   description: string;
   type: string;
-  secondaryImage?: string; // Imagen para el marco interior
 }
 
-const teamMembers: TeamMember[] = [
+const TEAM_MEMBERS: TeamMember[] = [
   {
     id: 1,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1755112462/dani_image.jpg",
-    title: "Dev Games",
-    description:
-      "Desarrollo de videojuegos con enfoque en rendimiento y optimización de mecánicas complejas. Experiencia en motores Unity y Unreal.",
-    type: "Unity / Unreal",
-    secondaryImage:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1757608227/game_frame.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646009/Daniel_h1tedo.jpg",
+    title: "Daniel",
+    description: "Programador",
+    type: "Programador",
   },
   {
     id: 2,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1755112470/jazz_image.jpg",
-    title: "Diseño UI",
-    description:
-      "Diseño de interfaces intuitivas y visualmente atractivas. Experiencia en Figma y Photoshop, adaptando la UX a distintos dispositivos.",
-    type: "Figma / Photoshop",
-    secondaryImage:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1757608227/ui_frame.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646019/Vero_oxe13d.jpg",
+    title: "Vero",
+    description: "CM",
+    type: "CM",
   },
   {
     id: 3,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1755112469/fermin_image.jpg",
-    title: "Música Code",
-    description:
-      "Integración de audio y programación interactiva, creación de experiencias multimedia en tiempo real con React y Tone.js.",
-    type: "React / Tone.js",
-    secondaryImage:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1757608227/music_frame.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646016/Joaqu%C3%ADn_tcrvym.png",
+    title: "Joaquín",
+    description: "Programador",
+    type: "Programador",
   },
   {
     id: 4,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1755112461/facu_image.jpg",
-    title: "3D Master",
-    description:
-      "Modelado 3D y animación para entornos interactivos. Optimización de recursos y texturizado avanzado en Blender y Three.js.",
-    type: "Blender / Three.js",
-    secondaryImage:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1757608227/3d_frame.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646022/Fermin_rkocyv.png",
+    title: "Fermín",
+    description: "Música",
+    type: "Música",
   },
   {
     id: 5,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1755112463/emi_image.jpg",
-    title: "Web Dev",
-    description:
-      "Desarrollo web fullstack moderno con Next.js y React. Implementación de e-commerce y soluciones escalables con buenas prácticas de código.",
-    type: "React / Next.js",
-    secondaryImage:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1757608227/web_frame.png",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646018/Nico_r9vimz.jpg",
+    title: "Nico",
+    description: "Programador",
+    type: "Programador",
+  },
+  {
+    id: 6,
+    image:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646016/Lucas_Ignacio_Lobos_vsrszr.jpg",
+    title: "Lucas Ignacio Lobos",
+    description: "Programador",
+    type: "Programador",
+  },
+  {
+    id: 7,
+    image:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646015/Jose.jpg_hmzv4p.jpg",
+    title: "José",
+    description: "Programador",
+    type: "Programador",
+  },
+  {
+    id: 8,
+    image:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646014/Jazmin_Mart%C3%ADnez_zi3jhf.jpg",
+    title: "Jazmín Martínez",
+    description: "Diseño",
+    type: "Diseño",
+  },
+  {
+    id: 9,
+    image:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646011/Facu_xzilbu.jpg",
+    title: "Facu",
+    description: "Programador",
+    type: "Programador",
+  },
+  {
+    id: 10,
+    image:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646010/EmiCararo_fgtqaq.jpg",
+    title: "Emi Cararo",
+    description: "Diseño Web",
+    type: "Diseño Web",
+  },
+  {
+    id: 11,
+    image:
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646009/emi_chsbls.jpg",
+    title: "Emi",
+    description: "Programador",
+    type: "Programador",
   },
 ];
 
-export default function Devs() {
-  const [activeMember, setActiveMember] = useState<number | null>(null);
+const ITEMS_PER_PAGE = 3;
 
-  const handleClick = (memberId: number) => {
-    setActiveMember((prev) => (prev === memberId ? null : memberId));
-  };
+export default function Devs() {
+  const [page, setPage] = useState(1);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  const totalPages = Math.ceil(TEAM_MEMBERS.length / ITEMS_PER_PAGE);
+  const membersToShow = TEAM_MEMBERS.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
+
+  const handlePrevPage = useCallback(() => {
+    setPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
+  const handleNextPage = useCallback(() => {
+    setPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
 
   return (
-    <>
-      {/* 🔹 Banner divisor arriba del grid */}
+    <section id="NOS" className={styles.teamSection}>
+    
       <div className={styles.topBanner}>
         <Image
           src="https://res.cloudinary.com/deek9levs/image/upload/v1757608227/Separador_Infinite_Path_1_axhchm.png"
-          alt="Infinite Pathways"
+          alt="Nuestro equipo"
           fill
           className={styles.topBannerImage}
           priority
-          sizes="100vw"
         />
-        <div className={styles.topBannerText}>NUESTRO EQUIPO</div>
-      </div>
-
-      {/* 🔹 SECCIÓN PRINCIPAL con ID "NOS" */}
-      <section id="NOS" className={styles.teamSection}>
-        <div className={styles.videosGrid}>
-          {teamMembers.map((member) => (
-            <div
-              key={member.id}
-              className={`${styles.card} ${
-                activeMember === member.id ? styles.active : ""
-              }`}
-              onClick={() => handleClick(member.id)}
-            >
-              {/* Marco exterior */}
-              <div className={styles.outerFrame}>
-                {/* Marco interior con imagen decorativa */}
-                <div className={styles.innerFrame}>
-                  {member.secondaryImage && (
-                    <div className={styles.innerFrameImage}>
-                      <Image
-                        src={member.secondaryImage}
-                        alt={`${member.title} frame`}
-                        fill
-                        className={styles.frameDecoration}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
-                  )}
-
-                  {/* Imagen principal del miembro */}
-                  <div className={styles.imageContainer}>
-                    <Image
-                      src={member.image}
-                      alt={member.title}
-                      fill
-                      className={styles.memberImage}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+        <h2 className={styles.topBannerText}>NUESTRO EQUIPO</h2>
+      </div>{" "}
+      
+      <div className={styles.videosGrid}>
+        {membersToShow.map((member, index) => (
+          <div
+            key={member.id}
+            className={`${styles.card} ${
+              activeCard === member.id ? styles.active : ""
+            }`}
+            onMouseEnter={() => setActiveCard(member.id)}
+            onMouseLeave={() => setActiveCard(null)}
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            {/* Marco doble (tu estructura original) */}
+            <div className={styles.outerFrame}>
+              <div className={styles.innerFrame}>
+                <div className={styles.imageContainer}>
+                  <Image
+                    src={member.image}
+                    alt={`${member.title} - ${member.description}`}
+                    fill
+                    className={styles.memberImage}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={index < 3}
+                  />
                 </div>
               </div>
-
-              <p className={styles.title}>{member.title}</p>
-
-              <div
-                className={`${styles.description} ${
-                  activeMember === member.id ? styles.visible : ""
-                }`}
-              >
-                <p>
-                  <strong>Tipo:</strong> {member.type}
-                </p>
-                <p>{member.description}</p>
-              </div>
             </div>
-          ))}
-        </div>
-      </section>
-    </>
+
+            {/* Título y descripción */}
+            <p className={styles.title}>{member.title}</p>
+            <div className={styles.description}>
+              <p>{member.description}</p>
+              <p className={styles.memberType}>{member.type}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Paginación simple (tu estructura) */}
+      <div className={styles.pagination}>
+        <button
+          onClick={handlePrevPage}
+          disabled={page === 1}
+          aria-label="Página anterior"
+        >
+          ←
+        </button>
+
+        <span>
+          {page} / {totalPages}
+        </span>
+
+        <button
+          onClick={handleNextPage}
+          disabled={page === totalPages}
+          aria-label="Página siguiente"
+        >
+          →
+        </button>
+      </div>
+    </section>
   );
 }

@@ -1,16 +1,54 @@
-/* Contenedor principal */
+/* Variables CSS locales (sin :root) */
+.teamSection {
+  /* Variables locales para este componente */
+  --color-primary: #a05040;
+  --color-secondary: #e9c789;
+  --color-accent: #ff6b35;
+  --color-dark: #1a1a1a;
+  --color-light: #ffffff;
+  --color-gray: #2d2d2d;
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+  --border-radius-xl: 25px;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 10px 30px rgba(160, 80, 64, 0.3);
+
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.4s ease;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+}
+
+/* Contenedor principal - SIN FONDO */
+.teamSection {
+  padding: var(--spacing-2xl) 0;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid de videos - MANTENIENDO TU ESTRUCTURA ORIGINAL */
 .videosGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-  padding: 3rem;
-  background-size: cover;
-  min-height: 100vh;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
   align-items: center;
   justify-content: center;
 }
 
-/* Cartas */
+/* Cartas - MANTENIENDO TU ESTILO ORIGINAL MEJORADO */
 .card {
   position: relative;
   background: linear-gradient(
@@ -18,12 +56,13 @@
     rgba(35, 35, 35, 0.9),
     rgba(25, 25, 25, 0.9)
   );
-  border-radius: 25px; /* Aumentado para marco exterior */
-  padding: 1.8rem; /* Más padding para el doble marco */
-  border: 3px solid #a05040; /* Marco exterior más grueso */
-  box-shadow: 0 10px 30px rgba(160, 80, 64, 0.3),
-    inset 0 0 0 1px rgba(233, 199, 137, 0.2); /* Borde interior sutil */
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-lg);
+  border: 3px solid var(--color-primary);
+  box-shadow:
+    var(--shadow-hover),
+    inset 0 0 0 1px rgba(233, 199, 137, 0.2);
+  transition: all var(--transition-slow);
   cursor: pointer;
   overflow: hidden;
   backdrop-filter: blur(10px);
@@ -31,28 +70,30 @@
 
 .card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(160, 80, 64, 0.4),
+  box-shadow:
+    0 15px 40px rgba(160, 80, 64, 0.4),
     inset 0 0 0 2px rgba(233, 199, 137, 0.3);
-  border-color: #e9c789;
+  border-color: var(--color-secondary);
 }
 
 .card.active {
-  border-color: #ff6b35;
-  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4),
+  border-color: var(--color-accent);
+  box-shadow:
+    0 15px 40px rgba(255, 107, 53, 0.4),
     inset 0 0 0 3px rgba(255, 107, 53, 0.2);
 }
 
-/* Marco exterior */
+/* Marco exterior - MANTENIENDO TU ESTRUCTURA */
 .outerFrame {
   position: relative;
   width: 100%;
   height: 250px;
-  border-radius: 18px; /* Radio interior del marco exterior */
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
-  margin-bottom: 1.5rem;
-  border: 2px solid rgba(233, 199, 137, 0.5); /* Borde dorado */
+  margin-bottom: var(--spacing-lg);
+  border: 2px solid rgba(233, 199, 137, 0.5);
   background: rgba(20, 20, 20, 0.7);
-  padding: 8px; /* Espacio entre marcos */
+  padding: 8px;
 }
 
 /* Marco interior */
@@ -60,31 +101,13 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 12px; /* Radio interior del marco interior */
+  border-radius: var(--border-radius-md);
   overflow: hidden;
-  border: 2px solid rgba(160, 80, 64, 0.7); /* Borde terracota */
+  border: 2px solid rgba(160, 80, 64, 0.7);
   background: rgba(30, 30, 30, 0.9);
 }
 
-/* Imagen decorativa del marco interior */
-.innerFrameImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.4;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-.frameDecoration {
-  object-fit: cover;
-  filter: sepia(0.3) brightness(1.1);
-}
-
-/* Contenedor de imagen principal */
+/* Contenedor de imagen */
 .imageContainer {
   position: relative;
   width: 100%;
@@ -93,8 +116,8 @@
 }
 
 .memberImage {
-  object-fit: cover;
-  transition: transform 0.5s ease;
+  object-fit: contain;
+  transition: transform var(--transition-slow);
 }
 
 .card:hover .memberImage {
@@ -106,28 +129,28 @@
   filter: brightness(1.1) contrast(1.1);
 }
 
-/* Título */
+/* Título - MANTENIENDO TU ESTILO */
 .title {
   text-align: center;
-  color: #e9c789;
+  color: var(--color-secondary);
   font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  padding: 0.8rem;
-  background: linear-gradient(to bottom, #a05040, #8a4030);
-  border-radius: 10px;
-  border: 1px solid #e9c789;
-  transition: all 0.3s ease;
+  padding: var(--spacing-sm);
+  background: linear-gradient(to bottom, var(--color-primary), #8a4030);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-secondary);
+  transition: all var(--transition-base);
 }
 
 .card:hover .title {
   background: linear-gradient(to bottom, #b06050, #9a5040);
-  border-color: #ff6b35;
+  border-color: var(--color-accent);
   color: #ffd700;
 }
 
-/* Descripción */
+/* Descripción - MANTENIENDO TU EFECTO DE HOVER */
 .description {
   position: absolute;
   bottom: 0;
@@ -139,53 +162,21 @@
     rgba(140, 60, 44, 0.9)
   );
   color: white;
-  padding: 1.5rem;
-  border-radius: 0 0 22px 22px; /* Ajustado al nuevo border-radius */
+  padding: var(--spacing-lg);
+  border-radius: 0 0 calc(var(--border-radius-xl) - 3px)
+    calc(var(--border-radius-xl) - 3px);
   transform: translateY(100%);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform var(--transition-slow);
   backdrop-filter: blur(10px);
-  border-top: 2px solid #e9c789;
+  border-top: 2px solid var(--color-secondary);
   z-index: 10;
-}
-
-.description.visible {
-  transform: translateY(0);
 }
 
 .card:hover .description {
   transform: translateY(0);
 }
 
-.description p {
-  margin: 0.5rem 0;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-.description strong {
-  color: #e9c789;
-  font-weight: 600;
-}
-
-/* Efectos de hover mejorados */
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, rgba(160, 80, 64, 0.1), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-/* Efecto de brillo en los bordes */
+/* Efecto de brillo en los bordes - MANTENIENDO */
 .outerFrame::after {
   content: "";
   position: absolute;
@@ -193,7 +184,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  border-radius: 20px;
+  border-radius: var(--border-radius-lg);
   background: linear-gradient(
     45deg,
     transparent,
@@ -202,19 +193,62 @@
   );
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-base);
 }
 
 .card:hover .outerFrame::after {
   opacity: 1;
 }
 
-/* Responsive */
+/* Paginación - MEJORADA PERO SIMILAR */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+  padding: var(--spacing-lg);
+}
+
+.pagination button {
+  background: rgba(160, 80, 64, 0.2);
+  color: var(--color-light);
+  border: 1px solid rgba(160, 80, 64, 0.4);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: var(--color-secondary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0 var(--spacing-md);
+}
+
+/* Responsive Design */
 @media (max-width: 1024px) {
   .videosGrid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
   }
 
   .outerFrame {
@@ -225,12 +259,12 @@
 @media (max-width: 768px) {
   .videosGrid {
     grid-template-columns: 1fr;
-    gap: 1.8rem;
-    padding: 1.5rem;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md);
   }
 
   .card {
-    padding: 1.4rem;
+    padding: var(--spacing-md);
   }
 
   .outerFrame {
@@ -244,47 +278,42 @@
 
   .title {
     font-size: 1.2rem;
-    padding: 0.6rem;
+    padding: var(--spacing-xs);
   }
 
   .description {
-    padding: 1.2rem;
-  }
-
-  .description p {
-    font-size: 0.9rem;
+    padding: var(--spacing-md);
   }
 }
 
 @media (max-width: 480px) {
   .videosGrid {
-    padding: 1rem;
-    gap: 1.5rem;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-md);
   }
 
   .card {
-    padding: 1rem;
-    border-radius: 20px;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-lg);
   }
 
   .outerFrame {
     height: 180px;
-    border-radius: 15px;
+    border-radius: calc(var(--border-radius-lg) - 2px);
     padding: 4px;
   }
 
   .innerFrame {
-    border-radius: 10px;
+    border-radius: calc(var(--border-radius-md) - 2px);
   }
 
   .title {
     font-size: 1.1rem;
-    padding: 0.5rem;
+    padding: calc(var(--spacing-xs) * 0.8);
   }
 
   .description {
-    padding: 1rem;
-    border-radius: 0 0 18px 18px;
+    padding: var(--spacing-sm);
   }
 }
 
@@ -304,11 +333,12 @@
   animation: fadeInUp 0.6s ease;
 }
 
-/* Banner superior full width */
+/* Si quieres mantener el banner (opcional) */
 .topBanner {
   width: 100%;
   height: 120px;
   position: relative;
+  margin-bottom: var(--spacing-xl);
 }
 
 .topBannerImage {
@@ -321,18 +351,17 @@
   transform: scale(1.02);
 }
 
-/* Texto sobre la imagen */
 .topBannerText {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #ff6b35;
+  color: var(--color-accent);
+  font-family: "Press Start 2P", sans-serif;
   font-size: 2.2rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-  font-family: "Press Start 2P", sans-serif;
   pointer-events: none;
 }
