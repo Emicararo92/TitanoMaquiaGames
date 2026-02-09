@@ -17,89 +17,99 @@ const TEAM_MEMBERS: TeamMember[] = [
     id: 1,
     image:
       "https://res.cloudinary.com/deek9levs/image/upload/v1770646009/Daniel_h1tedo.jpg",
-    title: "Daniel",
-    description: "Programador",
-    type: "Programador",
+    title: "Dani",
+    description:
+      "Producer y Game Designer. Define la visión del juego y mantiene al equipo en sync.",
+    type: "PRODUCER / GD",
   },
   {
     id: 2,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646019/Vero_oxe13d.jpg",
-    title: "Vero",
-    description: "CM",
-    type: "CM",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646011/Facu_xzilbu.jpg",
+    title: "Facu",
+    description:
+      "Lead de modelado 3D. Se encarga de que todo se vea sólido y optimizado.",
+    type: "Jefe de Modeladores",
   },
   {
     id: 3,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646016/Joaqu%C3%ADn_tcrvym.png",
-    title: "Joaquín",
-    description: "Programador",
-    type: "Programador",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646016/Lucas_Ignacio_Lobos_vsrszr.jpg",
+    title: "Lucas",
+    description:
+      "Modelador 3D. Construye personajes y assets listos para gameplay.",
+    type: "Modelador",
   },
   {
     id: 4,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646022/Fermin_rkocyv.png",
-    title: "Fermín",
-    description: "Música",
-    type: "Música",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646009/emi_chsbls.jpg",
+    title: "Emi",
+    description:
+      "Modelador 3D enfocado en detalles, texturas y rendimiento ingame.",
+    type: "Modelador",
   },
   {
     id: 5,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646018/Nico_r9vimz.jpg",
-    title: "Nico",
-    description: "Programador",
-    type: "Programador",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646014/Jazmin_Mart%C3%ADnez_zi3jhf.jpg",
+    title: "Jazz",
+    description:
+      "Artista gráfica. Da identidad visual y estilo a cada proyecto.",
+    type: "Artista Gráfica",
   },
   {
     id: 6,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646016/Lucas_Ignacio_Lobos_vsrszr.jpg",
-    title: "Lucas Ignacio Lobos",
-    description: "Programador",
-    type: "Programador",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646015/Jose.jpg_hmzv4p.jpg",
+    title: "José",
+    description:
+      "Lead programmer. Ordena el código y hace que todo funcione sin romperse.",
+    type: "Jefe de Programación",
   },
   {
     id: 7,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646015/Jose.jpg_hmzv4p.jpg",
-    title: "José",
-    description: "Programador",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646016/Joaqu%C3%ADn_tcrvym.png",
+    title: "Topo",
+    description:
+      "Programador gameplay. Mecánicas, lógica y optimización constante.",
     type: "Programador",
   },
   {
     id: 8,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646014/Jazmin_Mart%C3%ADnez_zi3jhf.jpg",
-    title: "Jazmín Martínez",
-    description: "Diseño",
-    type: "Diseño",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646018/Nico_r9vimz.jpg",
+    title: "Eze",
+    description:
+      "Programador backend y sistemas. Performance y estabilidad primero.",
+    type: "Programador",
   },
   {
     id: 9,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646011/Facu_xzilbu.jpg",
-    title: "Facu",
-    description: "Programador",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646016/Joaqu%C3%ADn_tcrvym.png",
+    title: "Lucas",
+    description:
+      "Programador gameplay. Integra features y pule la experiencia.",
     type: "Programador",
   },
   {
     id: 10,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646010/EmiCararo_fgtqaq.jpg",
-    title: "Emi Cararo",
-    description: "Diseño Web",
-    type: "Diseño Web",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646019/Vero_oxe13d.jpg",
+    title: "Vero",
+    description: "CM / CCO. Comunidad, comunicación y presencia del estudio.",
+    type: "CM / CCO",
   },
   {
     id: 11,
     image:
-      "https://res.cloudinary.com/deek9levs/image/upload/v1770646009/emi_chsbls.jpg",
-    title: "Emi",
-    description: "Programador",
-    type: "Programador",
+      "https://res.cloudinary.com/deek9levs/image/upload/v1770646010/EmiCararo_fgtqaq.jpg",
+    title: "Emi Cararo",
+    description:
+      "Web dev y diseño. La info al mundo online.",
+    type: "Diseño Web",
   },
 ];
 
@@ -125,7 +135,6 @@ export default function Devs() {
 
   return (
     <section id="NOS" className={styles.teamSection}>
-    
       <div className={styles.topBanner}>
         <Image
           src="https://res.cloudinary.com/deek9levs/image/upload/v1757608227/Separador_Infinite_Path_1_axhchm.png"
@@ -136,7 +145,6 @@ export default function Devs() {
         />
         <h2 className={styles.topBannerText}>NUESTRO EQUIPO</h2>
       </div>{" "}
-      
       <div className={styles.videosGrid}>
         {membersToShow.map((member, index) => (
           <div
